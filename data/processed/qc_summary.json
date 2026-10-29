@@ -1,0 +1,31 @@
+{
+  "2019-20": {
+    "total": 5318,
+    "kept": 2118,
+    "rejected_breakdown": {
+      "not_usa": 1257,
+      "out_of_season": 2474,
+      "animal_host": 1139,
+      "unparseable_date": 1
+    }
+  },
+  "2022-23": {
+    "total": 10990,
+    "kept": 4775,
+    "rejected_breakdown": {
+      "not_usa": 907,
+      "animal_host": 2151,
+      "out_of_season": 5142,
+      "unparseable_date": 8
+    }
+  },
+  "2023-24": {
+    "total": 12807,
+    "kept": 7972,
+    "rejected_breakdown": {
+      "animal_host": 1333,
+      "out_of_season": 3882,
+      "not_usa": 690
+    }
+  }
+}
