@@ -16,18 +16,20 @@ Keeps only:
 
 import json
 import re
+import sys
 from pathlib import Path
 from datetime import datetime
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from config import QC_WINDOWS                           # noqa: E402
 
 RAW_DIR = Path("data/raw/ncbi")
 OUT_DIR = Path("data/processed")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-SEASON_RANGES = {
-    "2019-20": (datetime(2019, 10, 1), datetime(2020, 5, 31)),
-    "2022-23": (datetime(2022, 10, 1), datetime(2023, 5, 31)),
-    "2023-24": (datetime(2023, 10, 1), datetime(2024, 5, 31)),
-}
+# Collection-date windows come from src/config.py so ingestion,
+# preprocessing and feature modules cannot drift apart.
+SEASON_RANGES = QC_WINDOWS
 
 ANIMAL_HOST_PATTERN = re.compile(
     r'A/(duck|chicken|swine|canine|feline|equine|avian|turkey|goose|'

@@ -11,6 +11,11 @@ import json
 import re
 from pathlib import Path
 from datetime import datetime
+import sys
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS
+
 from epiweeks import Week
 
 PROCESSED_DIR = Path("data/processed")
@@ -73,7 +78,7 @@ def mmwr_epiweek(date_obj):
 def main():
     summary = {}
 
-    for season in ["2019-20", "2022-23", "2023-24"]:
+    for season in SEASON_LABELS:
         with open(PROCESSED_DIR / f"qc_{season}.json") as f:
             records = json.load(f)
 

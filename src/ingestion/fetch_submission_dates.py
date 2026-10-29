@@ -18,8 +18,10 @@ from Bio import Entrez, SeqIO
 
 Entrez.email = "adamyasharma7476@gmail.com"   # same as before
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 PROCESSED_DIR = Path("data/processed")
-SEASONS = ["2019-20", "2022-23", "2023-24"]
+from config import SEASON_LABELS as SEASONS
 
 SUBMITTED_PATTERN = re.compile(r'Submitted\s*\((\d{2}-[A-Z]{3}-\d{4})\)', re.IGNORECASE)
 

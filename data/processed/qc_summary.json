@@ -1,31 +1,72 @@
 {
-  "2019-20": {
-    "total": 5318,
-    "kept": 2118,
+  "2015-16": {
+    "total": 20870,
+    "kept": 3570,
     "rejected_breakdown": {
-      "not_usa": 1257,
-      "out_of_season": 2474,
-      "animal_host": 1139,
-      "unparseable_date": 1
+      "animal_host": 4597,
+      "not_usa": 3518,
+      "out_of_season": 15780,
+      "unparseable_date": 301
+    }
+  },
+  "2016-17": {
+    "total": 24407,
+    "kept": 3495,
+    "rejected_breakdown": {
+      "animal_host": 5234,
+      "out_of_season": 19636,
+      "not_usa": 4677,
+      "unparseable_date": 95
+    }
+  },
+  "2017-18": {
+    "total": 23965,
+    "kept": 4311,
+    "rejected_breakdown": {
+      "animal_host": 5246,
+      "out_of_season": 18167,
+      "not_usa": 4773,
+      "unparseable_date": 80
+    }
+  },
+  "2018-19": {
+    "total": 18613,
+    "kept": 5623,
+    "rejected_breakdown": {
+      "not_usa": 3626,
+      "animal_host": 5149,
+      "out_of_season": 11306,
+      "unparseable_date": 44
+    }
+  },
+  "2019-20": {
+    "total": 11059,
+    "kept": 2552,
+    "rejected_breakdown": {
+      "animal_host": 4409,
+      "not_usa": 2822,
+      "out_of_season": 7400,
+      "unparseable_date": 16
     }
   },
   "2022-23": {
-    "total": 10990,
-    "kept": 4775,
+    "total": 57244,
+    "kept": 7874,
     "rejected_breakdown": {
-      "not_usa": 907,
-      "animal_host": 2151,
-      "out_of_season": 5142,
+      "animal_host": 9645,
+      "out_of_season": 47486,
+      "not_usa": 3283,
       "unparseable_date": 8
     }
   },
   "2023-24": {
-    "total": 12807,
-    "kept": 7972,
+    "total": 65913,
+    "kept": 13714,
     "rejected_breakdown": {
-      "animal_host": 1333,
-      "out_of_season": 3882,
-      "not_usa": 690
+      "animal_host": 9578,
+      "out_of_season": 50316,
+      "not_usa": 3579,
+      "unparseable_date": 194
     }
   }
 }

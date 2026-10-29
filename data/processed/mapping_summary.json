@@ -1,21 +1,51 @@
 {
+  "2015-16": {
+    "input": 3570,
+    "mapped": 771,
+    "unmapped_states": {
+      "NO_STATE_PARSED": 2799
+    }
+  },
+  "2016-17": {
+    "input": 3495,
+    "mapped": 3114,
+    "unmapped_states": {
+      "NO_STATE_PARSED": 381
+    }
+  },
+  "2017-18": {
+    "input": 4311,
+    "mapped": 4038,
+    "unmapped_states": {
+      "NO_STATE_PARSED": 273
+    }
+  },
+  "2018-19": {
+    "input": 5623,
+    "mapped": 5458,
+    "unmapped_states": {
+      "NO_STATE_PARSED": 165
+    }
+  },
   "2019-20": {
-    "input": 2118,
-    "mapped": 2118,
-    "unmapped_states": {}
+    "input": 2552,
+    "mapped": 2327,
+    "unmapped_states": {
+      "NO_STATE_PARSED": 225
+    }
   },
   "2022-23": {
-    "input": 4775,
-    "mapped": 4114,
+    "input": 7874,
+    "mapped": 6195,
     "unmapped_states": {
-      "NO_STATE_PARSED": 661
+      "NO_STATE_PARSED": 1679
     }
   },
   "2023-24": {
-    "input": 7972,
-    "mapped": 7575,
+    "input": 13714,
+    "mapped": 12817,
     "unmapped_states": {
-      "NO_STATE_PARSED": 397
+      "NO_STATE_PARSED": 897
     }
   }
 }
