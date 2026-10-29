@@ -1,0 +1,31 @@
+variant,variant_label,season,peak_side,n_rows,n_covered,pct_covered
+oracle,Oracle (collection-dated),2019-20,pre-peak,180,176,97.8
+oracle,Oracle (collection-dated),2019-20,peak or after,150,60,40.0
+oracle,Oracle (collection-dated),2022-23,pre-peak,70,70,100.0
+oracle,Oracle (collection-dated),2022-23,peak or after,260,168,64.6
+oracle,Oracle (collection-dated),2023-24,pre-peak,120,118,98.3
+oracle,Oracle (collection-dated),2023-24,peak or after,210,140,66.7
+oracle,Oracle (collection-dated),ALL (row-weighted),pre-peak,370,364,98.4
+oracle,Oracle (collection-dated),ALL (season mean),pre-peak,370,364,98.7
+oracle,Oracle (collection-dated),ALL (row-weighted),peak or after,620,368,59.4
+oracle,Oracle (collection-dated),ALL (season mean),peak or after,620,368,57.1
+asof_L8_16,"As-of, 8-16 wk window",2019-20,pre-peak,180,77,42.8
+asof_L8_16,"As-of, 8-16 wk window",2019-20,peak or after,150,150,100.0
+asof_L8_16,"As-of, 8-16 wk window",2022-23,pre-peak,70,0,0.0
+asof_L8_16,"As-of, 8-16 wk window",2022-23,peak or after,260,176,67.7
+asof_L8_16,"As-of, 8-16 wk window",2023-24,pre-peak,120,11,9.2
+asof_L8_16,"As-of, 8-16 wk window",2023-24,peak or after,210,183,87.1
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),pre-peak,370,88,23.8
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),pre-peak,370,88,17.3
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),peak or after,620,509,82.1
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),peak or after,620,509,84.9
+asof_L4_12,"As-of, 4-12 wk window",2019-20,pre-peak,180,75,41.7
+asof_L4_12,"As-of, 4-12 wk window",2019-20,peak or after,150,150,100.0
+asof_L4_12,"As-of, 4-12 wk window",2022-23,pre-peak,70,0,0.0
+asof_L4_12,"As-of, 4-12 wk window",2022-23,peak or after,260,137,52.7
+asof_L4_12,"As-of, 4-12 wk window",2023-24,pre-peak,120,12,10.0
+asof_L4_12,"As-of, 4-12 wk window",2023-24,peak or after,210,178,84.8
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),pre-peak,370,87,23.5
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),pre-peak,370,87,17.2
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),peak or after,620,465,75.0
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),peak or after,620,465,79.2

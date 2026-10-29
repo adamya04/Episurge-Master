@@ -7,3 +7,5 @@ xarray
 netCDF4
 geopandas
 epiweeks
+matplotlib
+scikit-learn

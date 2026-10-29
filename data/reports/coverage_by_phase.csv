@@ -1,0 +1,31 @@
+variant,variant_label,season,phase,n_rows,n_covered,pct_covered
+oracle,Oracle (collection-dated),2019-20,early (wk 40-52),130,126,96.9
+oracle,Oracle (collection-dated),2019-20,late (wk 1-20),200,110,55.0
+oracle,Oracle (collection-dated),2022-23,early (wk 40-52),130,130,100.0
+oracle,Oracle (collection-dated),2022-23,late (wk 1-20),200,108,54.0
+oracle,Oracle (collection-dated),2023-24,early (wk 40-52),130,128,98.5
+oracle,Oracle (collection-dated),2023-24,late (wk 1-20),200,130,65.0
+oracle,Oracle (collection-dated),ALL (row-weighted),early (wk 40-52),390,384,98.5
+oracle,Oracle (collection-dated),ALL (season mean),early (wk 40-52),390,384,98.5
+oracle,Oracle (collection-dated),ALL (row-weighted),late (wk 1-20),600,348,58.0
+oracle,Oracle (collection-dated),ALL (season mean),late (wk 1-20),600,348,58.0
+asof_L8_16,"As-of, 8-16 wk window",2019-20,early (wk 40-52),130,27,20.8
+asof_L8_16,"As-of, 8-16 wk window",2019-20,late (wk 1-20),200,200,100.0
+asof_L8_16,"As-of, 8-16 wk window",2022-23,early (wk 40-52),130,4,3.1
+asof_L8_16,"As-of, 8-16 wk window",2022-23,late (wk 1-20),200,172,86.0
+asof_L8_16,"As-of, 8-16 wk window",2023-24,early (wk 40-52),130,15,11.5
+asof_L8_16,"As-of, 8-16 wk window",2023-24,late (wk 1-20),200,179,89.5
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),early (wk 40-52),390,46,11.8
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),early (wk 40-52),390,46,11.8
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),late (wk 1-20),600,551,91.8
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),late (wk 1-20),600,551,91.8
+asof_L4_12,"As-of, 4-12 wk window",2019-20,early (wk 40-52),130,27,20.8
+asof_L4_12,"As-of, 4-12 wk window",2019-20,late (wk 1-20),200,198,99.0
+asof_L4_12,"As-of, 4-12 wk window",2022-23,early (wk 40-52),130,4,3.1
+asof_L4_12,"As-of, 4-12 wk window",2022-23,late (wk 1-20),200,133,66.5
+asof_L4_12,"As-of, 4-12 wk window",2023-24,early (wk 40-52),130,16,12.3
+asof_L4_12,"As-of, 4-12 wk window",2023-24,late (wk 1-20),200,174,87.0
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),early (wk 40-52),390,47,12.1
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),early (wk 40-52),390,47,12.1
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),late (wk 1-20),600,505,84.2
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),late (wk 1-20),600,505,84.2
