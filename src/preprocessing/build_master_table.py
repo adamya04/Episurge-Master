@@ -178,7 +178,10 @@ def main():
               f"({100*core[col].mean():.1f}%)")
 
     total_oracle = master["has_genomic_oracle"].sum()
-    print(f"\n  Oracle cells, all rows: {total_oracle} (validator baseline: 734)")
+    # 734 was the validated count on the original three seasons; quoting it
+    # against a seven-season run was misleading rather than informative.
+    print(f"\n  Oracle cells, all rows: {total_oracle} "
+          f"across {len(SEASONS)} seasons")
 
     # modelling-ready rows: everything except genomic present
     ready = core[core["has_surveillance"] &

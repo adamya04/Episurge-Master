@@ -19,7 +19,7 @@ from collections import Counter
 import sys as _sys
 from pathlib import Path as _P
 _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
-from config import SEASON_LABELS
+from config import SEASON_LABELS, SEASON_WINDOWS
 
 PROCESSED = Path("data/processed")
 RAW = Path("data/raw")
@@ -67,10 +67,26 @@ def check_genomic():
     print(f"  Sequences per region: "
           f"min={min(regions.values())} max={max(regions.values())}")
 
+    # Valid MMWR years are derived from the configured season windows, not
+    # hardcoded. A fixed 2019-2024 range failed 9,408 legitimate records the
+    # moment earlier seasons were added.
+    yr_lo = min(a for a, _ in SEASON_WINDOWS) // 100
+    yr_hi = max(b for _, b in SEASON_WINDOWS) // 100
     bad_weeks = [r for r in all_records
-                 if not (1 <= r["mmwr_week"] <= 53) or not (2019 <= r["mmwr_year"] <= 2024)]
+                 if not (1 <= r["mmwr_week"] <= 53)
+                 or not (yr_lo <= r["mmwr_year"] <= yr_hi)]
     if bad_weeks:
-        fail(f"{len(bad_weeks)} genomic records have out-of-range epiweeks")
+        fail(f"{len(bad_weeks)} genomic records have epiweeks outside "
+             f"{yr_lo}-{yr_hi}")
+
+    # Publication windows overlap by 24 months, so an accession can appear in
+    # two season files. The composition builders deduplicate; reported here so
+    # the count is visible rather than silently differing.
+    accs = [r.get("accession") for r in all_records if r.get("accession")]
+    dupes = len(accs) - len(set(accs))
+    if dupes:
+        print(f"  Duplicate accessions across overlapping fetch windows: {dupes} "
+              f"(deduplicated downstream)")
 
     years = sorted({r["mmwr_year"] for r in all_records})
     print(f"  MMWR years: {years}")
@@ -175,9 +191,16 @@ def check_era5():
 
     files = sorted((RAW / "era5" / "extracted").glob("*.nc"))
     print(f"  Files: {len(files)}")
-    if len(files) != 12:
-        warn(f"Expected 12 extracted ERA5 files (6 requests x 2 variables), "
-             f"found {len(files)}")
+    # Expected count follows from the configured seasons: each season needs
+    # H2 of its start year and H1 of its end year, two variables each.
+    halves = set()
+    for a, b in SEASON_WINDOWS:
+        halves.add((a // 100, "H2"))
+        halves.add((b // 100, "H1"))
+    expected_files = len(halves) * 2
+    if len(files) != expected_files:
+        warn(f"Expected {expected_files} extracted ERA5 files "
+             f"({len(halves)} half-years x 2 variables), found {len(files)}")
 
     date_ranges = []
     for f in files:
