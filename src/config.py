@@ -47,8 +47,12 @@ from datetime import datetime
 # to week 26 of the following year, giving lead-in weeks before the core
 # evaluation window (weeks 40-20).
 
+# 2015-16 is EXCLUDED - see EXCLUDED_SEASONS below. Kept here, commented,
+# so the window is on record and the season can be restored for a
+# sensitivity check without re-deriving it.
+#   "2015-16": (datetime(2015, 10, 1), datetime(2016, 5, 31), 201527, 201626),
+
 SEASONS = {
-    "2015-16": (datetime(2015, 10, 1), datetime(2016, 5, 31), 201527, 201626),
     "2016-17": (datetime(2016, 10, 1), datetime(2017, 5, 31), 201627, 201726),
     "2017-18": (datetime(2017, 10, 1), datetime(2018, 5, 31), 201727, 201826),
     "2018-19": (datetime(2018, 10, 1), datetime(2019, 5, 31), 201827, 201926),
@@ -66,6 +70,18 @@ ORIGINAL_SEASONS = ["2019-20", "2022-23", "2023-24"]
 EXCLUDED_SEASONS = {
     "2020-21": "COVID-era suppression of influenza circulation",
     "2021-22": "COVID-era suppression of influenza circulation",
+    "2015-16": (
+        "Sequences were deposited retrospectively, not prospectively: median "
+        "collection-to-submission delay 298 days against 65-110 for every "
+        "other season, p10 255 days, and 99.7% of sequences over 12 weeks "
+        "late. Core-season as-of genomic coverage is 0.0% in both windows "
+        "across all 33 weeks. The delay profile describes a batch deposit "
+        "rather than surveillance submission behaviour, so the season cannot "
+        "support an as-of analysis and distorts the pooled delay statistic. "
+        "Only 773 of 3,570 QC-passed records (21.7%) also carried a mappable "
+        "state. Raw data retained; exclusion is a stated criterion, not a "
+        "deletion."
+    ),
 }
 
 # ──────────────────────────────────────────────────────────────────────

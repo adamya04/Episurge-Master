@@ -347,6 +347,41 @@ def main():
         lambda r: round(100 * (base[r.horizon] - r.mae) / base[r.horizon], 1), axis=1)
     print(sk.pivot_table(index="horizon", columns="model",
                          values="skill_pct").to_string())
+    print("\n  Pooled figures above are a weighted mean ACROSS FOLDS and can")
+    print("  describe no individual fold. On the original three seasons the")
+    print("  two folds gave -8.9% and +56.7% at h=8, pooling to +18.7%.")
+    print("  TABLE 2b is the one to read.")
+
+    # ── per-fold, the reportable view ─────────────────────────────────
+    print("\n" + "-" * 70)
+    print("TABLE 2b  Skill vs persistence BY FOLD  (%, seeds averaged)")
+    print("-" * 70)
+    pf = (res[res.stratum == "all"]
+          .groupby(["fold", "horizon", "model"])["mae"].mean().reset_index())
+    for model in ["B1", "B2"]:
+        sub = pf[pf.model.isin(["B0", model])]
+        wide = sub.pivot_table(index="fold", columns=["horizon", "model"],
+                               values="mae")
+        rows = {}
+        for fold in sorted(pf.fold.unique()):
+            rows[fold] = {}
+            for h in HORIZONS:
+                try:
+                    b0 = wide.loc[fold, (h, "B0")]
+                    mm = wide.loc[fold, (h, model)]
+                    rows[fold][h] = round(100 * (b0 - mm) / b0, 1)
+                except (KeyError, ZeroDivisionError):
+                    rows[fold][h] = np.nan
+        tab = pd.DataFrame(rows).T
+        tab.index.name = f"{NAMES[model]} vs B0"
+        print(f"\n  {NAMES[model]} — skill vs persistence, per fold:")
+        print(tab.to_string())
+        spread = tab.max() - tab.min()
+        print(f"    fold-to-fold spread by horizon: "
+              f"{', '.join(f'h{h}={spread[h]:.0f}pp' for h in HORIZONS if h in spread)}")
+        print(f"    sign consistent across folds: "
+              f"{', '.join(f'h{h}=' + ('yes' if (tab[h].dropna() > 0).all() or (tab[h].dropna() < 0).all() else 'NO') for h in HORIZONS if h in tab)}")
+    print("\n  A horizon whose sign flips across folds supports no claim.")
 
     print("\n" + "-" * 70)
     print("TABLE 3  MAE by stratum  (folds pooled, seeds averaged)")

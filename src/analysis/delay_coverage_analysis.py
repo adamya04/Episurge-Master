@@ -2,9 +2,12 @@
 """
 EpiSurge - Phase 2a / E1: delay and coverage-timing analysis.
 
-The headline N5 statistic so far has been a level difference: core-season
-genomic coverage is 73.9% under oracle indexing and 60.3% under as-of
-indexing. That understates the finding.
+The headline N5 statistic has been a level difference: core-season genomic
+coverage under oracle indexing versus under as-of indexing. That understates
+the finding. (The figures themselves are not repeated here - they changed
+twice already, once when the censored fetch window was corrected and once
+when the study went from three seasons to seven. Current values are printed
+at run time and recorded in data/reports/coverage_baseline.json.)
 
 Coverage is not uniformly attenuated by publication delay - it is
 RELOCATED. Oracle coverage is high early in the season (sequences are
@@ -49,6 +52,7 @@ Requires matplotlib:
     pip install matplotlib
 """
 
+import json
 import sys
 from pathlib import Path
 
@@ -519,19 +523,52 @@ def main():
     print("-" * 66)
     fails = []
 
-    if len(core) != 990:
-        fails.append(f"expected 990 core rows, got {len(core)}")
+    # Structural check: core season is MMWR weeks 40-20, which is 33 weeks,
+    # times 10 regions, times however many seasons are configured. This must
+    # hold whatever the data says.
+    expected_core = 33 * 10 * len(SEASONS)
+    if len(core) != expected_core:
+        fails.append(f"expected {expected_core} core rows "
+                     f"({len(SEASONS)} seasons x 33 wk x 10 regions), got {len(core)}")
 
     oracle_all = 100 * core.has_genomic_oracle.mean()
     a816 = 100 * core.has_genomic_asof_L8_16.mean()
     a412 = 100 * core.has_genomic_asof_L4_12.mean()
     print(f"  core-season coverage: oracle {oracle_all:.1f}%  "
           f"as-of L8-16 {a816:.1f}%  as-of L4-12 {a412:.1f}%")
-    for name, got, want in [("oracle", oracle_all, 73.9),
-                            ("as-of L8-16", a816, 60.3),
-                            ("as-of L4-12", a412, 55.8)]:
-        if abs(got - want) > 0.15:
-            fails.append(f"{name} coverage {got:.1f}% != logged {want}%")
+
+    # Coverage percentages are empirical, so they cannot be derived - but
+    # hardcoding them means the check silently goes stale every time the data
+    # changes (it already did, twice). Instead the first run for a given
+    # season set writes a baseline; later runs compare against it and fail
+    # loudly on drift. Delete the baseline file to re-accept new numbers.
+    baseline_path = REPORTS / "coverage_baseline.json"
+    key = ",".join(sorted(SEASONS))
+    measured = {"oracle": round(oracle_all, 2),
+                "asof_L8_16": round(a816, 2),
+                "asof_L4_12": round(a412, 2)}
+
+    baselines = {}
+    if baseline_path.exists():
+        try:
+            baselines = json.loads(baseline_path.read_text())
+        except Exception:
+            baselines = {}
+
+    if key in baselines:
+        for name, got in measured.items():
+            want = baselines[key].get(name)
+            if want is not None and abs(got - want) > 0.15:
+                fails.append(f"{name} coverage {got:.2f}% != baseline {want:.2f}% "
+                             f"- data changed; delete {baseline_path.name} "
+                             f"to re-accept")
+        if not fails:
+            print(f"  matches recorded baseline for these {len(SEASONS)} seasons")
+    else:
+        baselines[key] = measured
+        baseline_path.write_text(json.dumps(baselines, indent=2))
+        print(f"  no baseline for this season set - recorded one in "
+              f"{baseline_path.name}")
 
     early = core[core.phase == EARLY_LABEL]
     late = core[core.phase == LATE_LABEL]

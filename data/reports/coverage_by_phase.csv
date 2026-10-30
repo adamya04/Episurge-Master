@@ -1,31 +1,49 @@
 variant,variant_label,season,phase,n_rows,n_covered,pct_covered
+oracle,Oracle (collection-dated),2016-17,early (wk 40-52),130,118,90.8
+oracle,Oracle (collection-dated),2016-17,late (wk 1-20),200,190,95.0
+oracle,Oracle (collection-dated),2017-18,early (wk 40-52),130,127,97.7
+oracle,Oracle (collection-dated),2017-18,late (wk 1-20),200,190,95.0
+oracle,Oracle (collection-dated),2018-19,early (wk 40-52),130,126,96.9
+oracle,Oracle (collection-dated),2018-19,late (wk 1-20),200,192,96.0
 oracle,Oracle (collection-dated),2019-20,early (wk 40-52),130,126,96.9
-oracle,Oracle (collection-dated),2019-20,late (wk 1-20),200,110,55.0
+oracle,Oracle (collection-dated),2019-20,late (wk 1-20),200,120,60.0
 oracle,Oracle (collection-dated),2022-23,early (wk 40-52),130,130,100.0
-oracle,Oracle (collection-dated),2022-23,late (wk 1-20),200,108,54.0
+oracle,Oracle (collection-dated),2022-23,late (wk 1-20),200,170,85.0
 oracle,Oracle (collection-dated),2023-24,early (wk 40-52),130,128,98.5
-oracle,Oracle (collection-dated),2023-24,late (wk 1-20),200,130,65.0
-oracle,Oracle (collection-dated),ALL (row-weighted),early (wk 40-52),390,384,98.5
-oracle,Oracle (collection-dated),ALL (season mean),early (wk 40-52),390,384,98.5
-oracle,Oracle (collection-dated),ALL (row-weighted),late (wk 1-20),600,348,58.0
-oracle,Oracle (collection-dated),ALL (season mean),late (wk 1-20),600,348,58.0
+oracle,Oracle (collection-dated),2023-24,late (wk 1-20),200,200,100.0
+oracle,Oracle (collection-dated),ALL (row-weighted),early (wk 40-52),780,755,96.8
+oracle,Oracle (collection-dated),ALL (season mean),early (wk 40-52),780,755,96.8
+oracle,Oracle (collection-dated),ALL (row-weighted),late (wk 1-20),1200,1062,88.5
+oracle,Oracle (collection-dated),ALL (season mean),late (wk 1-20),1200,1062,88.5
+asof_L8_16,"As-of, 8-16 wk window",2016-17,early (wk 40-52),130,16,12.3
+asof_L8_16,"As-of, 8-16 wk window",2016-17,late (wk 1-20),200,199,99.5
+asof_L8_16,"As-of, 8-16 wk window",2017-18,early (wk 40-52),130,42,32.3
+asof_L8_16,"As-of, 8-16 wk window",2017-18,late (wk 1-20),200,200,100.0
+asof_L8_16,"As-of, 8-16 wk window",2018-19,early (wk 40-52),130,25,19.2
+asof_L8_16,"As-of, 8-16 wk window",2018-19,late (wk 1-20),200,197,98.5
 asof_L8_16,"As-of, 8-16 wk window",2019-20,early (wk 40-52),130,27,20.8
 asof_L8_16,"As-of, 8-16 wk window",2019-20,late (wk 1-20),200,200,100.0
 asof_L8_16,"As-of, 8-16 wk window",2022-23,early (wk 40-52),130,4,3.1
 asof_L8_16,"As-of, 8-16 wk window",2022-23,late (wk 1-20),200,172,86.0
 asof_L8_16,"As-of, 8-16 wk window",2023-24,early (wk 40-52),130,15,11.5
 asof_L8_16,"As-of, 8-16 wk window",2023-24,late (wk 1-20),200,179,89.5
-asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),early (wk 40-52),390,46,11.8
-asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),early (wk 40-52),390,46,11.8
-asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),late (wk 1-20),600,551,91.8
-asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),late (wk 1-20),600,551,91.8
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),early (wk 40-52),780,129,16.5
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),early (wk 40-52),780,129,16.5
+asof_L8_16,"As-of, 8-16 wk window",ALL (row-weighted),late (wk 1-20),1200,1147,95.6
+asof_L8_16,"As-of, 8-16 wk window",ALL (season mean),late (wk 1-20),1200,1147,95.6
+asof_L4_12,"As-of, 4-12 wk window",2016-17,early (wk 40-52),130,18,13.8
+asof_L4_12,"As-of, 4-12 wk window",2016-17,late (wk 1-20),200,199,99.5
+asof_L4_12,"As-of, 4-12 wk window",2017-18,early (wk 40-52),130,62,47.7
+asof_L4_12,"As-of, 4-12 wk window",2017-18,late (wk 1-20),200,197,98.5
+asof_L4_12,"As-of, 4-12 wk window",2018-19,early (wk 40-52),130,27,20.8
+asof_L4_12,"As-of, 4-12 wk window",2018-19,late (wk 1-20),200,195,97.5
 asof_L4_12,"As-of, 4-12 wk window",2019-20,early (wk 40-52),130,27,20.8
 asof_L4_12,"As-of, 4-12 wk window",2019-20,late (wk 1-20),200,198,99.0
 asof_L4_12,"As-of, 4-12 wk window",2022-23,early (wk 40-52),130,4,3.1
 asof_L4_12,"As-of, 4-12 wk window",2022-23,late (wk 1-20),200,133,66.5
 asof_L4_12,"As-of, 4-12 wk window",2023-24,early (wk 40-52),130,16,12.3
 asof_L4_12,"As-of, 4-12 wk window",2023-24,late (wk 1-20),200,174,87.0
-asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),early (wk 40-52),390,47,12.1
-asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),early (wk 40-52),390,47,12.1
-asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),late (wk 1-20),600,505,84.2
-asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),late (wk 1-20),600,505,84.2
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),early (wk 40-52),780,154,19.7
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),early (wk 40-52),780,154,19.7
+asof_L4_12,"As-of, 4-12 wk window",ALL (row-weighted),late (wk 1-20),1200,1096,91.3
+asof_L4_12,"As-of, 4-12 wk window",ALL (season mean),late (wk 1-20),1200,1096,91.3
