@@ -1,51 +1,44 @@
 {
-  "2015-16": {
-    "input": 3570,
-    "mapped": 773,
-    "unmapped_states": {
-      "NO_STATE_PARSED": 2797
-    }
-  },
   "2016-17": {
-    "input": 3495,
-    "mapped": 3209,
+    "input": 3273,
+    "mapped": 3096,
     "unmapped_states": {
-      "NO_STATE_PARSED": 286
+      "NO_STATE_PARSED": 177
     }
   },
   "2017-18": {
-    "input": 4311,
-    "mapped": 4128,
+    "input": 4118,
+    "mapped": 4057,
     "unmapped_states": {
-      "NO_STATE_PARSED": 183
+      "NO_STATE_PARSED": 61
     }
   },
   "2018-19": {
-    "input": 5623,
-    "mapped": 5458,
+    "input": 5480,
+    "mapped": 5451,
     "unmapped_states": {
-      "NO_STATE_PARSED": 165
+      "NO_STATE_PARSED": 29
     }
   },
   "2019-20": {
-    "input": 2552,
-    "mapped": 2327,
+    "input": 2388,
+    "mapped": 2321,
     "unmapped_states": {
-      "NO_STATE_PARSED": 225
+      "NO_STATE_PARSED": 67
     }
   },
   "2022-23": {
-    "input": 7874,
-    "mapped": 6195,
+    "input": 6705,
+    "mapped": 5183,
     "unmapped_states": {
-      "NO_STATE_PARSED": 1679
+      "NO_STATE_PARSED": 1522
     }
   },
   "2023-24": {
-    "input": 13714,
-    "mapped": 12817,
+    "input": 12481,
+    "mapped": 12050,
     "unmapped_states": {
-      "NO_STATE_PARSED": 897
+      "NO_STATE_PARSED": 431
     }
   }
 }

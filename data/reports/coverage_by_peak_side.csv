@@ -1,6 +1,6 @@
 variant,variant_label,season,peak_side,n_rows,n_covered,pct_covered
-oracle,Oracle (collection-dated),2016-17,pre-peak,180,168,93.3
-oracle,Oracle (collection-dated),2016-17,peak or after,150,140,93.3
+oracle,Oracle (collection-dated),2016-17,pre-peak,180,167,92.8
+oracle,Oracle (collection-dated),2016-17,peak or after,150,138,92.0
 oracle,Oracle (collection-dated),2017-18,pre-peak,170,167,98.2
 oracle,Oracle (collection-dated),2017-18,peak or after,160,150,93.8
 oracle,Oracle (collection-dated),2018-19,pre-peak,190,186,97.9
@@ -8,13 +8,13 @@ oracle,Oracle (collection-dated),2018-19,peak or after,140,132,94.3
 oracle,Oracle (collection-dated),2019-20,pre-peak,180,176,97.8
 oracle,Oracle (collection-dated),2019-20,peak or after,150,70,46.7
 oracle,Oracle (collection-dated),2022-23,pre-peak,70,70,100.0
-oracle,Oracle (collection-dated),2022-23,peak or after,260,230,88.5
+oracle,Oracle (collection-dated),2022-23,peak or after,260,227,87.3
 oracle,Oracle (collection-dated),2023-24,pre-peak,120,118,98.3
 oracle,Oracle (collection-dated),2023-24,peak or after,210,210,100.0
-oracle,Oracle (collection-dated),ALL (row-weighted),pre-peak,910,885,97.3
-oracle,Oracle (collection-dated),ALL (season mean),pre-peak,910,885,97.6
-oracle,Oracle (collection-dated),ALL (row-weighted),peak or after,1070,932,87.1
-oracle,Oracle (collection-dated),ALL (season mean),peak or after,1070,932,86.1
+oracle,Oracle (collection-dated),ALL (row-weighted),pre-peak,910,884,97.1
+oracle,Oracle (collection-dated),ALL (season mean),pre-peak,910,884,97.5
+oracle,Oracle (collection-dated),ALL (row-weighted),peak or after,1070,927,86.6
+oracle,Oracle (collection-dated),ALL (season mean),peak or after,1070,927,85.7
 asof_L8_16,"As-of, 8-16 wk window",2016-17,pre-peak,180,65,36.1
 asof_L8_16,"As-of, 8-16 wk window",2016-17,peak or after,150,150,100.0
 asof_L8_16,"As-of, 8-16 wk window",2017-18,pre-peak,170,82,48.2

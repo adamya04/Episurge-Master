@@ -31,11 +31,53 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # preprocessing and feature modules cannot drift apart.
 SEASON_RANGES = QC_WINDOWS
 
-ANIMAL_HOST_PATTERN = re.compile(
-    r'A/(duck|chicken|swine|canine|feline|equine|avian|turkey|goose|'
-    r'quail|pheasant|mink|seal|bat|pig|horse|dog|cat)/',
-    re.IGNORECASE
-)
+# Non-human host detection.
+#
+# This was a blocklist of 18 animal names. It missed 146 distinct hosts -
+# cattle, dairy cow, bovine, and every wild bird species - letting 2,213
+# records (6.3%) through, 1,743 of them H5N1 from the 2024 cattle and avian
+# panzootic. The damage was concentrated in 2022-23 (1,012 records) and
+# 2023-24 (772), so the contamination was season-specific and would have
+# produced spurious between-season variation in the composition features.
+# Measured effect: the "other" subtype share was 16.0% in 2022-23 and 6.1%
+# in 2023-24, and fell to 0.0% in both once animal hosts were excluded -
+# i.e. the entire category was contamination, not a human subtype.
+#
+# Replaced with a STRUCTURAL rule from influenza strain nomenclature:
+#     human   A/<place>/<id>/<year>            -> 4 slash-separated fields
+#     animal  A/<host>/<place>/<id>/<year>     -> 5 or more
+# A named host means a non-human isolate. Verified against all 146 hosts
+# found in the data (cattle, mallard, environment, bos taurus, ...) with
+# zero human false positives.
+STRAIN_NAME = re.compile(r'\((A/[^)]+)\)')
+
+# Some strains name the host explicitly as "human" - A/human/Texas/.../2024 -
+# chiefly the 2024 H5N1 spillover cases. The structural rule alone flagged
+# 2,230 of these as non-human, which is wrong: the host IS human. Whether a
+# human H5N1 spillover case belongs in a SEASONAL composition is a separate
+# question, handled by subtype rather than by host.
+HUMAN_HOST_LABELS = {"human", "homo sapiens", "h. sapiens", "sapiens"}
+
+
+def named_host(description):
+    """
+    Return the host name if the strain is from a non-human host, else None.
+
+    Influenza strain nomenclature:
+        human   A/<place>/<id>/<year>          -> 4 slash-separated fields
+        animal  A/<host>/<place>/<id>/<year>   -> 5 or more
+    A named host means non-human, EXCEPT when that host is explicitly human.
+    """
+    m = STRAIN_NAME.search(description)
+    if not m:
+        return None
+    parts = m.group(1).split("/")
+    if len(parts) < 5:
+        return None
+    host = parts[1].strip()
+    if host.lower() in HUMAN_HOST_LABELS:
+        return None
+    return host
 
 def parse_collection_date(date_str):
     """GenBank dates come in several formats: '2016', '18-Nov-2022',
@@ -54,7 +96,8 @@ def passes_qc(record, season_start, season_end):
     if not record["geo_loc_name"].strip().startswith("USA"):
         reasons.append("not_usa")
 
-    if ANIMAL_HOST_PATTERN.search(record["description"]):
+    host = named_host(record["description"])
+    if host:
         reasons.append("animal_host")
 
     parsed_date = parse_collection_date(record["collection_date"])
@@ -75,6 +118,7 @@ def main():
 
         kept = []
         rejected_counts = {}
+        rejected_hosts = {}
 
         for r in records:
             ok, reasons, parsed_date = passes_qc(r, start, end)
@@ -84,6 +128,9 @@ def main():
             else:
                 for reason in reasons:
                     rejected_counts[reason] = rejected_counts.get(reason, 0) + 1
+                if "animal_host" in reasons:
+                    h = named_host(r["description"]).lower()
+                    rejected_hosts[h] = rejected_hosts.get(h, 0) + 1
 
         out_path = OUT_DIR / f"qc_{season_label}.json"
         with open(out_path, "w") as f:
@@ -99,6 +146,10 @@ def main():
         print(f"  Total:   {len(records)}")
         print(f"  Kept:    {len(kept)} ({100*len(kept)/len(records):.1f}%)")
         print(f"  Rejected breakdown: {rejected_counts}")
+        if rejected_hosts:
+            top = sorted(rejected_hosts.items(), key=lambda kv: -kv[1])[:5]
+            print(f"  Non-human hosts excluded: {len(rejected_hosts)} distinct, "
+                  f"top: {', '.join(f'{h} ({n})' for h, n in top)}")
 
     with open(OUT_DIR / "qc_summary.json", "w") as f:
         json.dump(summary, f, indent=2)

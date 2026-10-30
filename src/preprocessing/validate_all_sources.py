@@ -198,9 +198,15 @@ def check_era5():
         halves.add((a // 100, "H2"))
         halves.add((b // 100, "H1"))
     expected_files = len(halves) * 2
-    if len(files) != expected_files:
-        warn(f"Expected {expected_files} extracted ERA5 files "
+    # Only a SHORTFALL matters. Extra files are leftovers from seasons since
+    # excluded (2015-16) and are simply not read by era5_to_region_week.py,
+    # which selects periods by the configured season windows.
+    if len(files) < expected_files:
+        warn(f"Expected at least {expected_files} extracted ERA5 files "
              f"({len(halves)} half-years x 2 variables), found {len(files)}")
+    elif len(files) > expected_files:
+        print(f"  ({len(files) - expected_files} extra files present from "
+              f"excluded seasons - not read)")
 
     date_ranges = []
     for f in files:
