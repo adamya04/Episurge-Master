@@ -22,7 +22,12 @@ API = "https://api.delphi.cmu.edu/epidata/fluview/"
 REGIONS = [f"hhs{i}" for i in range(1, 11)]
 
 # cover all three seasons plus lead-in weeks for lagged features
-EPIWEEK_RANGE = "201901-202430"
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import EPIWEEK_RANGE
+
+
 
 
 def fetch():

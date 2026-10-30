@@ -9,7 +9,12 @@ A missing issue silently drops that origin from the modelling set.
 import pandas as pd
 from epiweeks import Week
 
-SEASON_WINDOWS = [(201927, 202026), (202227, 202326), (202327, 202426)]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_WINDOWS
+
+
 
 v = pd.read_csv("data/raw/fluview/fluview_vintages.csv")
 have = set(v["issue"].unique())

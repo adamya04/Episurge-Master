@@ -33,7 +33,12 @@ REPORTS = Path("data/reports")
 FEATURES.mkdir(parents=True, exist_ok=True)
 REPORTS.mkdir(parents=True, exist_ok=True)
 
-SEASONS = ["2019-20", "2022-23", "2023-24"]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS as SEASONS, ORIGINAL_SEASONS
+
+
 SUBTYPE_PATTERN = re.compile(r"\((H\d+N\d+)\)")
 
 
@@ -59,10 +64,19 @@ def main():
     records = []
     subtype_counts = defaultdict(int)
     no_submission = 0
+    # Publication windows overlap by 24 months (see config.FETCH_TAIL_MONTHS),
+    # so the same accession can appear in two raw season files and would
+    # otherwise be counted twice in the composition. First season wins.
+    seen = set()
+    duplicates = 0
 
     for season in SEASONS:
         with open(PROCESSED / f"mapped_{season}.json") as f:
             for r in json.load(f):
+                if r["accession"] in seen:
+                    duplicates += 1
+                    continue
+                seen.add(r["accession"])
                 sub = parse_submitted(sub_dates.get(r["accession"], ""))
                 if sub is None:
                     no_submission += 1
@@ -83,7 +97,7 @@ def main():
                     "subtype": subtype,
                 })
 
-    print(f"Records: {len(records)}  (dropped, no submission date: {no_submission})")
+    print(f"Records: {len(records)}  (dropped, no submission date: {no_submission}; duplicate accessions across overlapping fetch windows: {duplicates})")
     print(f"Subtypes: {dict(subtype_counts)}")
 
     # ── delay distribution ──────────────────────────────────────
@@ -130,9 +144,14 @@ def main():
                          round(h3 / denom, 4) if denom else "",
                          round(oth / denom, 4) if denom else ""])
 
-    print(f"\nOracle rows: {len(grouped)}  (expected 734)")
-    if len(grouped) != 734:
-        print(f"  [WARN] Row count differs from the validated baseline of 734")
+    print(f"\nOracle rows: {len(grouped)}  ({len(SEASONS)} seasons)")
+    # 734 was the validated row count on the original three seasons. It is
+    # not a defect for this to differ once seasons are added or the fetch
+    # window changes - only a silent DROP would be. Report against the
+    # three-season baseline only when the study is still three seasons.
+    if set(SEASONS) == set(ORIGINAL_SEASONS) and len(grouped) != 734:
+        print("  [WARN] three-season run but row count differs from the "
+              "validated baseline of 734")
     print(f"Saved -> {out}")
     print(f"Saved -> {REPORTS / 'delay_distribution.csv'}")
 

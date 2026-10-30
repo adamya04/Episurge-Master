@@ -35,11 +35,13 @@ FEATURES = Path("data/features")
 
 OUT = PROCESSED / "master_region_week.csv"
 
-SEASONS = [
-    ("2019-20", 201927, 202026),
-    ("2022-23", 202227, 202326),
-    ("2023-24", 202327, 202426),
-]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASONS as _CFG_SEASONS
+
+
+SEASONS = [(lbl, a, b) for lbl, (_, _, a, b) in _CFG_SEASONS.items()]
 
 ASOF_WINDOWS = ["L4-12", "L8-16"]
 LAG_COLS = [f"ili_asof_lag{k}" for k in range(1, 9)]

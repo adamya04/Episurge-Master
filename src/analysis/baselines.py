@@ -64,6 +64,11 @@ import pandas as pd
 
 from sklearn.ensemble import HistGradientBoostingRegressor
 
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -78,11 +83,18 @@ HORIZONS = [1, 2, 3, 4, 6, 8]
 SEEDS = [0, 1, 2, 3, 4]              # Master Plan 7.4: 5 seeds, report mean +/- std
 LAG_COLS = [f"ili_asof_lag{k}" for k in range(1, 9)]
 
-# Rolling-origin folds. Each test season is strictly later than every
-# training season in its fold.
+# Rolling-origin folds, generated from config: expanding window, each test
+# season strictly later than every training season in its fold. Seven
+# seasons give six folds.
+#
+# E2 on the original three seasons produced two folds that reversed each
+# other (climatological skill at h=8: -8.9% then +56.7%), because the
+# seasons peak at MMWR weeks 06, 47 and 52 and a climatology built from
+# one season lands on the wrong week in the next. Pooled-across-fold
+# numbers are therefore NOT reported; per-fold results are the output.
 FOLDS = [
-    ("fold1", ["2019-20"], "2022-23"),
-    ("fold2", ["2019-20", "2022-23"], "2023-24"),
+    (f"fold{i}", SEASON_LABELS[:i], SEASON_LABELS[i])
+    for i in range(1, len(SEASON_LABELS))
 ]
 
 # B2 gets position-in-season alongside lags and region. Master Plan 7.1

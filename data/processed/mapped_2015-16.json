@@ -3285,6 +3285,36 @@
     "epiweek": "2016-W20"
   },
   {
+    "accession": "CY239376.1",
+    "geo_loc_name": "USA: Southcentral Alaska",
+    "collection_date": "04-May-2016",
+    "create_date": "26-JUL-2017",
+    "organism": "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/16MB00031/2016(H16N3))",
+    "sequence_length": 1734,
+    "description": "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/16MB00031/2016(H16N3)) hemagglutinin (HA) gene, complete cds",
+    "collection_date_parsed": "2016-05-04T00:00:00",
+    "state": "Alaska",
+    "hhs_region": 10,
+    "mmwr_year": 2016,
+    "mmwr_week": 18,
+    "epiweek": "2016-W18"
+  },
+  {
+    "accession": "CY239269.1",
+    "geo_loc_name": "USA: Southcentral Alaska",
+    "collection_date": "04-May-2016",
+    "create_date": "26-JUL-2017",
+    "organism": "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/16MB00033/2016(H16N3))",
+    "sequence_length": 1730,
+    "description": "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/16MB00033/2016(H16N3)) hemagglutinin (HA) gene, complete cds",
+    "collection_date_parsed": "2016-05-04T00:00:00",
+    "state": "Alaska",
+    "hhs_region": 10,
+    "mmwr_year": 2016,
+    "mmwr_week": 18,
+    "epiweek": "2016-W18"
+  },
+  {
     "accession": "KX949524.1",
     "geo_loc_name": "USA: Izembek National Wildlife Refuge, Alaska",
     "collection_date": "03-Oct-2015",

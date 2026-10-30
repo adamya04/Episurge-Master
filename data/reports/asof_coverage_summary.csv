@@ -1,3 +1,3 @@
 lag_min,lag_max,populated_cells,cells_above_threshold,grid_cells,pct_above_threshold,total_sequences
-4,12,671,538,1560,34.49,32707
-8,16,792,702,1560,45.0,63542
+4,12,1730,1414,3640,38.85,56766
+8,16,1995,1775,3640,48.76,115332

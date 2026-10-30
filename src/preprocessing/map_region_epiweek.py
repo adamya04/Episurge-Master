@@ -68,7 +68,51 @@ def extract_state(geo_loc_name):
         if part.lower() in STATE_NAME_LOOKUP_LOWER:
             return STATE_NAME_LOOKUP_LOWER[part.lower()]
 
+    # Pass 2: forms the exact-match pass misses. A diagnostic over all seven
+    # seasons found 187 recoverable records, 172 of them
+    # 'USA: New York City, New York County' - dropping those removed New
+    # York City from Region 2 entirely, a geographic bias rather than a
+    # volume loss. The remaining failures are bare 'USA' with no state
+    # recorded at source and are genuinely unrecoverable.
+    for part in parts:
+        p = part.strip()
+
+        fixed = SPELLING_FIXES.get(p.lower())
+        if fixed:
+            return fixed
+
+        # 'New York County' / 'New York City' -> 'New York'
+        stripped = re.sub(r'\s+(County|Parish|Borough|City)$', '', p, flags=re.I).strip()
+        if stripped.lower() in STATE_NAME_LOOKUP_LOWER:
+            return STATE_NAME_LOOKUP_LOWER[stripped.lower()]
+
+        # state name embedded in a regional description:
+        # 'Southcentral Alaska' -> 'Alaska'. Longest first so 'West
+        # Virginia' is not matched as 'Virginia'.
+        for name in STATES_BY_LENGTH:
+            if re.search(rf'\b{re.escape(name)}\b', p, flags=re.I):
+                return name
+
     return None
+
+
+# Misspellings observed in geo_loc_name across the seven seasons.
+SPELLING_FIXES = {
+    "misouri": "Missouri",
+    "southcarolina": "South Carolina",
+    "northcarolina": "North Carolina",
+    "westvirginia": "West Virginia",
+    "newyork": "New York",
+    "newjersey": "New Jersey",
+    "newmexico": "New Mexico",
+    "newhampshire": "New Hampshire",
+    "rhodeisland": "Rhode Island",
+    "northdakota": "North Dakota",
+    "southdakota": "South Dakota",
+}
+
+# Longest first, so 'West Virginia' wins over 'Virginia'.
+STATES_BY_LENGTH = sorted(STATE_TO_HHS, key=len, reverse=True)
 
 def mmwr_epiweek(date_obj):
     """MMWR epiweek via the epiweeks library (CDC system is the default)."""

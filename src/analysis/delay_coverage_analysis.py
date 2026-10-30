@@ -66,7 +66,12 @@ FIGURES = Path("figures")
 MASTER = PROCESSED / "master_region_week.csv"
 DELAYS = REPORTS / "delay_distribution.csv"
 
-SEASONS = ["2019-20", "2022-23", "2023-24"]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS as SEASONS
+
+
 
 # The three genomic availability variants carried in the master table.
 # oracle leaks by construction and is the N5 ceiling, not a usable feature.

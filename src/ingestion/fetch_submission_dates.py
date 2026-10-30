@@ -42,10 +42,29 @@ def main():
         with open(PROCESSED_DIR / f"mapped_{season}.json") as f:
             for r in json.load(f):
                 accessions.append(r["accession"])
+    accessions = list(dict.fromkeys(accessions))     # dedupe, keep order
 
-    print(f"Fetching submission dates for {len(accessions)} accessions...")
-
+    # INCREMENTAL: keep dates already fetched and request only what is new.
+    # A full refetch of ~35k accessions takes hours, and any change upstream
+    # (a parser fix adding a few hundred records) previously forced one.
+    out_path = PROCESSED_DIR / "submission_dates.json"
     submission_dates = {}
+    if out_path.exists():
+        with open(out_path) as f:
+            submission_dates = json.load(f)
+        # drop blanks so a previously failed lookup is retried
+        submission_dates = {k: v for k, v in submission_dates.items() if v}
+
+    todo = [a for a in accessions if a not in submission_dates]
+    print(f"Accessions in scope: {len(accessions)}")
+    print(f"  already have dates: {len(accessions) - len(todo)}")
+    print(f"  to fetch:           {len(todo)}")
+    if not todo:
+        print("\nNothing to fetch - all accessions already have submission dates.")
+        report(submission_dates, accessions, out_path, write=False)
+        return
+
+    accessions = todo
     batch_size = 200
 
     for i in range(0, len(accessions), batch_size):
@@ -60,14 +79,21 @@ def main():
             print(f"    [WARN] batch failed: {e}")
         time.sleep(0.4)
 
-    out_path = PROCESSED_DIR / "submission_dates.json"
-    with open(out_path, "w") as f:
-        json.dump(submission_dates, f, indent=2)
+    report(submission_dates, accessions, out_path, write=True)
+
+
+def report(submission_dates, requested, out_path, write=True):
+    if write:
+        with open(out_path, "w") as f:
+            json.dump(submission_dates, f, indent=2)
 
     found = sum(1 for v in submission_dates.values() if v)
-    print(f"\nSaved {len(submission_dates)} entries -> {out_path}")
-    print(f"  With submission date: {found} ({100*found/len(submission_dates):.1f}%)")
+    total = len(submission_dates) or 1
+    print(f"\n{'Saved' if write else 'Have'} {len(submission_dates)} entries "
+          f"-> {out_path}")
+    print(f"  With submission date: {found} ({100*found/total:.1f}%)")
     print(f"  Missing:              {len(submission_dates) - found}")
+
 
 if __name__ == "__main__":
     main()

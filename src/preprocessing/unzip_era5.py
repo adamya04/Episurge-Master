@@ -16,8 +16,25 @@ EXTRACT_DIR = RAW_DIR / "extracted"
 EXTRACT_DIR.mkdir(exist_ok=True)
 
 
+def period_tag(stem):
+    """
+    Two naming schemes exist in data/raw/era5:
+      era5_daily_2019.nc, era5_daily_2023a.nc   - original downloads
+      era5_2015H2.nc, era5_2016H1.nc            - half-year downloads from
+                                                  the generalised fetcher
+    Both must be extracted. Matching only the first pattern silently left
+    four seasons with no climate data.
+    """
+    if stem.startswith("era5_daily_"):
+        return stem[len("era5_daily_"):]
+    if stem.startswith("era5_"):
+        return stem[len("era5_"):]
+    return stem
+
+
 def main():
-    files = sorted(RAW_DIR.glob("era5_daily_*.nc"))
+    # glob both schemes; EXTRACT_DIR is a subdirectory so it is not matched
+    files = sorted(set(RAW_DIR.glob("era5_daily_*.nc")) | set(RAW_DIR.glob("era5_*.nc")))
     print(f"Found {len(files)} downloaded files\n")
 
     for f in files:
@@ -28,7 +45,7 @@ def main():
             print(f"{f.name}: not a ZIP, skipping")
             continue
 
-        tag = f.stem.replace("era5_daily_", "")   # 2019, 2023a, ...
+        tag = period_tag(f.stem)   # 2019, 2023a, 2015H2, ...
 
         with zipfile.ZipFile(f) as z:
             members = [m for m in z.namelist() if m.endswith(".nc")]

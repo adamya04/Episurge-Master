@@ -16,6 +16,11 @@ import sys
 from pathlib import Path
 from collections import Counter
 
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS
+
 PROCESSED = Path("data/processed")
 RAW = Path("data/raw")
 
@@ -34,7 +39,7 @@ def section(title):
 # ─────────────────────────────────────────────────────────────
 def check_genomic():
     section("1. GENOMIC (NCBI)")
-    seasons = ["2019-20", "2022-23", "2023-24"]
+    seasons = SEASON_LABELS
     all_records, counts = [], {}
 
     for s in seasons:

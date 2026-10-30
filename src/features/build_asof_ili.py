@@ -29,7 +29,12 @@ FEATURES.mkdir(parents=True, exist_ok=True)
 
 OUT = FEATURES / "asof_ili.csv"
 
-SEASON_WINDOWS = [(201927, 202026), (202227, 202326), (202327, 202426)]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_WINDOWS
+
+
 MAX_LAG = 8          # Master Plan: surveillance block = ILI at lags 1-8
 MIN_LAG = 1          # F8 decision
 

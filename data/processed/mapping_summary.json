@@ -1,23 +1,23 @@
 {
   "2015-16": {
     "input": 3570,
-    "mapped": 771,
+    "mapped": 773,
     "unmapped_states": {
-      "NO_STATE_PARSED": 2799
+      "NO_STATE_PARSED": 2797
     }
   },
   "2016-17": {
     "input": 3495,
-    "mapped": 3114,
+    "mapped": 3209,
     "unmapped_states": {
-      "NO_STATE_PARSED": 381
+      "NO_STATE_PARSED": 286
     }
   },
   "2017-18": {
     "input": 4311,
-    "mapped": 4038,
+    "mapped": 4128,
     "unmapped_states": {
-      "NO_STATE_PARSED": 273
+      "NO_STATE_PARSED": 183
     }
   },
   "2018-19": {

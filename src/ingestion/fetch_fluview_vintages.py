@@ -32,8 +32,13 @@ FINAL = RAW_DIR / "fluview.csv"
 
 API = "https://api.delphi.cmu.edu/epidata/fluview/"
 REGIONS = ",".join(f"hhs{i}" for i in range(1, 11))
-EPIWEEKS = "201901-202430"
-SEASON_WINDOWS = [(201927, 202026), (202227, 202326), (202327, 202426)]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import EPIWEEK_RANGE as EPIWEEKS
+from config import SEASON_WINDOWS
+
+
 FIELDS = ["region", "epiweek", "issue", "lag", "wili", "ili",
           "num_ili", "num_patients"]
 

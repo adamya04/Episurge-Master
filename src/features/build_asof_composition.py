@@ -40,7 +40,10 @@ REPORTS_DIR = Path("data/reports")
 FEATURES_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-SEASONS = ["2019-20", "2022-23", "2023-24"]
+import sys as _sys
+from pathlib import Path as _P
+_sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+from config import SEASON_LABELS as SEASONS
 SUBTYPE_PATTERN = re.compile(r'\((H\d+N\d+)\)')
 
 # Retained windows only (see DECISIONS.md): L1-8 dropped at 12.4% coverage,
@@ -49,7 +52,9 @@ CANDIDATE_WINDOWS = [(4, 12), (8, 16)]
 
 # Forecast-origin weeks are defined by the season calendar, not by where
 # sequences happen to exist.
-SEASON_WINDOWS = [(201927, 202026), (202227, 202326), (202327, 202426)]
+from config import SEASON_WINDOWS
+
+
 
 # Shrinkage strength: weight given to the pooled (national) composition.
 # k=5 means a cell with 5 sequences sits halfway between its own estimate
@@ -86,9 +91,17 @@ def load_records():
         sub_dates = json.load(f)
 
     out = []
+    # Publication windows overlap by 24 months, so the same accession can
+    # appear in two raw season files. Deduplicate or it is counted twice.
+    seen = set()
+    duplicates = 0
     for season in SEASONS:
         with open(PROCESSED_DIR / f"mapped_{season}.json") as f:
             for r in json.load(f):
+                if r["accession"] in seen:
+                    duplicates += 1
+                    continue
+                seen.add(r["accession"])
                 sub = parse_submitted(sub_dates.get(r["accession"], ""))
                 if sub is None:
                     continue
@@ -100,6 +113,8 @@ def load_records():
                     "submission_date": sub,
                     "subtype": extract_subtype(r["description"]),
                 })
+    if duplicates:
+        print(f"  deduplicated {duplicates} accessions seen in more than one season file")
     return out
 
 
