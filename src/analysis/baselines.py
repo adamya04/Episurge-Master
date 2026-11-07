@@ -416,7 +416,8 @@ def main():
     # ── figures ───────────────────────────────────────────────────────
     f1 = fig_by_horizon(summary)
     f2 = fig_skill(a, base)
-    print(f"\n  wrote {f1}\n  wrote {f2}")
+    f3 = fig_skill_by_fold(res)
+    print(f"\n  wrote {f1}\n  wrote {f2}\n  wrote {f3}")
 
     # ── checks ────────────────────────────────────────────────────────
     print("\n" + "-" * 70)
@@ -466,6 +467,55 @@ def fig_by_horizon(summary):
     ax.set_axisbelow(True)
     fig.tight_layout()
     out = FIGURES / "fig_baseline_by_horizon.png"
+    fig.savefig(out, dpi=200)
+    plt.close(fig)
+    return out
+
+
+def fig_skill_by_fold(res):
+    """
+    Per-fold skill against persistence - the reportable view.
+
+    The pooled figures average across folds and can describe no individual
+    fold: on the original three seasons the two folds gave -8.9% and +56.7%
+    at h=8, pooling to +18.7%. This panel shows every fold separately so a
+    sign flip is visible rather than averaged away.
+    """
+    pf = (res[res.stratum == "all"]
+          .groupby(["fold", "horizon", "model"])["mae"].mean().reset_index())
+    folds = sorted(pf.fold.unique())
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5), sharey=True)
+    cmap = plt.get_cmap("viridis")
+    for ax, model in zip(axes, ["B1", "B2"]):
+        for i, fold in enumerate(folds):
+            xs, ys = [], []
+            for h in HORIZONS:
+                try:
+                    b0 = pf[(pf.fold == fold) & (pf.horizon == h) &
+                            (pf.model == "B0")]["mae"].iloc[0]
+                    mm = pf[(pf.fold == fold) & (pf.horizon == h) &
+                            (pf.model == model)]["mae"].iloc[0]
+                except IndexError:
+                    continue
+                xs.append(h)
+                ys.append(100 * (b0 - mm) / b0)
+            ax.plot(xs, ys, marker="o", linewidth=1.9, markersize=4,
+                    color=cmap(i / max(1, len(folds) - 1)), label=fold)
+        ax.axhline(0, color="#888888", linestyle="--", linewidth=1.3)
+        ax.set_title(NAMES[model], fontsize=11, loc="left")
+        ax.set_xlabel("Forecast horizon (weeks)")
+        ax.set_xticks(HORIZONS)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.grid(axis="y", alpha=0.25, linewidth=0.6)
+        ax.set_axisbelow(True)
+    axes[0].set_ylabel("MAE improvement over persistence (%)")
+    axes[0].legend(frameon=False, fontsize=8, ncol=2, title="fold")
+    fig.suptitle("Skill varies by fold: a horizon whose sign flips supports no claim",
+                 fontsize=12, x=0.01, ha="left")
+    fig.tight_layout()
+    out = FIGURES / "fig_baseline_skill_by_fold.png"
     fig.savefig(out, dpi=200)
     plt.close(fig)
     return out
