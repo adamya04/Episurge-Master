@@ -323,8 +323,14 @@ def fig_crossover(byweek, core):
 
     ax.set_xlabel("Position in season (MMWR week)")
     ax.set_ylabel("Region-weeks with genomic data (%)")
-    ax.set_title("Publication delay relocates genomic coverage to the late season",
-                 fontsize=12, loc="left")
+    # Title corrected 2026-10-30. It previously read "relocates genomic
+    # coverage to the late season", which described the CENSORED data: part
+    # of the oracle curve's late-season decline was an artifact of the
+    # truncated fetch window (F12). With the window corrected, oracle
+    # coverage is flat across the season (early 96.7%, late 88.1%), so there
+    # is no relocation - only one-sided loss on the as-of side.
+    ax.set_title("Publication delay removes genomic coverage before the peak, "
+                 "not after", fontsize=12, loc="left")
     ticks = [i for i in sorted(idx_to_week) if i % 4 == 0]
     ax.set_xticks(ticks)
     ax.set_xticklabels([f"{idx_to_week[i]:02d}" for i in ticks])
@@ -352,8 +358,11 @@ def fig_vs_peak(byoffset):
     ax.axvspan(keep.weeks_from_peak.min(), 0, color="#000000", alpha=0.04)
     ax.set_xlabel("Weeks from epidemic peak  (negative = before the peak)")
     ax.set_ylabel("Region-weeks with genomic data (%)")
-    ax.set_title("Genomic data is largely absent before the peak under realistic availability",
-                 fontsize=12, loc="left")
+    # "largely absent" overstated it: the as-of curve reaches ~73% by the
+    # peak. The precise claim is that coverage is ZERO until roughly 12 weeks
+    # before the peak, which is stronger because it is exact.
+    ax.set_title("Under realistic availability, genomic coverage is zero until "
+                 "~12 weeks before the peak", fontsize=11, loc="left")
     ax.set_ylim(-3, 103)
     ax.legend(frameon=False, fontsize=9, loc="center left")
     _style(ax)
@@ -418,7 +427,16 @@ def fig_delay(d):
                 xy=(med, ax.get_ylim()[1] * 0.92),
                 xytext=(med + 20, ax.get_ylim()[1] * 0.92),
                 color="#c0504d", fontsize=10, va="center")
-    ax.set_xlabel("Collection to public submission (days)")
+    # The bin edges stop at 400 days, so longer delays are dropped from the
+    # plot by matplotlib without warning. State the exclusion on the axis
+    # rather than letting the figure imply the distribution ends there.
+    n_beyond = int((v > 400).sum())
+    if n_beyond:
+        ax.set_xlabel(f"Collection to public submission (days)\n"
+                      f"axis truncated at 400 days; {n_beyond} sequences "
+                      f"({100*n_beyond/len(v):.1f}%) fall beyond it")
+    else:
+        ax.set_xlabel("Collection to public submission (days)")
     ax.set_ylabel("Sequences")
     ax.set_title("Collection-to-publication delay, influenza A HA, USA",
                  fontsize=12, loc="left")
