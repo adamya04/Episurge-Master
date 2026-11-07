@@ -181,3 +181,37 @@ evidence; see `DECISIONS.md` and the Master Plan §2.
 | Genomic encoder trained from scratch | Influ-BERT is trained on ~900,000 sequences; ours would have ~32,000 |
 | PyTorch Geometric | At 10 nodes, mean-aggregation message passing is ~20 lines; the dependency is a known Windows failure point |
 | Newly invented evaluation metrics | Reviewers discount single-paper metrics |
+
+ChatGPT Suggestions:
+
+A. §1.1 table — two new rows (after the “Amend Master Plan §7.3” row):
+
+| Add a shared plotting style module | The 7 existing figures each set their own fonts, sizes and DPI. One `src/analysis/plotstyle.py` imported everywhere gives consistent typography across the report. ~30 min. |
+| Geographic coverage figure | E1 characterises coverage in time only. No figure shows which regions are sequencing-dark, though Region 2 needed a 172-record recovery to be usable at all. Uses existing data. |
+
+B. §1.2 — third E3 constraint (after the “Fold 4 will dominate” bullet):
+
+- **A sampling-effort control arm is mandatory.** `n_total` is in the master
+  table and used by nothing. Sequencing volume plausibly tracks outbreak size,
+  so a positive composition result is open to the objection that it measures
+  surveillance intensity rather than genomic signal. E3 therefore runs **four
+  arms**: none / `n_total` only / raw composition / JS divergence. If the
+  `n_total` arm matches the composition arms, the finding is effort, not
+  genomics, and must be reported as such. This is the in-scope counterpart to
+  the regional confound analysis in 2.3.
+
+C. §2.1 — new bullet at the end:
+
+**Metadata-only genomic features.** Without sequences, the remaining
+unexploited signal in the 32,141 records is: Shannon or Simpson diversity on
+the subtype mix, subtype turnover rate per region-week (an antigenic-drift
+proxy), and sequencing intensity per capita. All are derivable today. They are
+listed here rather than in Part 1 because none is justified unless E3 shows
+the existing composition block carries signal.
+
+D. §2.3 — new bullet:
+
+- **Hyperparameter sensitivity for B2.** The `HistGradientBoostingRegressor`
+  settings were chosen once and never varied. A reviewer will ask whether the
+  baseline was tuned as carefully as the genomic model, and right now the
+  answer is no for both.
