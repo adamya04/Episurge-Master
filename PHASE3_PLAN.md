@@ -18,8 +18,8 @@ figures.
 Published work that uses pathogen genomics for incidence forecasting indexes
 sequences by *collection* date. That is an oracle: at forecast origin T, a
 sequence collected before T but published after T is not available. E1
-measured what the oracle is worth — 97.3 % coverage before the epidemic peak
-against 34.8 % under publication-dating, a 62.5-point gap, with 8–11
+measured what the oracle is worth — 97.1 % coverage before the epidemic peak
+against 34.8 % under publication-dating, a 62.3-point gap, with 8–11
 consecutive onset weeks at exactly zero in every season. Phase 3 measures what
 that gap costs a forecast. **This is the primary contribution.**
 

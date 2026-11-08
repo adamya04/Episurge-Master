@@ -92,6 +92,29 @@ def load_oracle():
     return df.rename(columns={c: f"oracle_{c}" for c in cols})
 
 
+def load_genomic_derived():
+    """
+    GF2-GF5 from build_genomic_features.py: composition change, sampling
+    effort, spatial divergence and the subtype novelty proxy, for each of
+    the oracle and as-of variants.
+
+    Optional on purpose. The file did not exist before Phase 3, and a
+    pipeline that hard-failed here would make every Phase 1-2 result
+    irreproducible from a clean checkout. Absent means the GF2-GF5 columns
+    are simply not present, which the E3 arms detect and report.
+    """
+    path = FEATURES / "genomic_derived.csv"
+    if not path.exists():
+        print("  [note] data/features/genomic_derived.csv absent - GF2-GF5 "
+              "columns omitted.\n         Run build_genomic_features.py to "
+              "add them (needed for E3 arms A3-A6).")
+        return None
+    df = pd.read_csv(path)
+    if df.duplicated(["hhs_region", "epiweek"]).any():
+        sys.exit(f"{path} has duplicate (region, epiweek) keys")
+    return df
+
+
 def load_asof_composition(window):
     path = FEATURES / f"asof_composition_{window}.csv"
     if not path.exists():
@@ -126,6 +149,12 @@ def main():
     for w in ASOF_WINDOWS:
         master = master.merge(load_asof_composition(w),
                               on=["hhs_region", "epiweek"], how="left")
+
+    derived = load_genomic_derived()
+    n_derived_cols = 0
+    if derived is not None:
+        n_derived_cols = derived.shape[1] - 2
+        master = master.merge(derived, on=["hhs_region", "epiweek"], how="left")
 
     if len(master) != before:
         sys.exit(f"Join changed row count {before} -> {len(master)} "
@@ -176,6 +205,20 @@ def main():
         col = f"has_genomic_asof_{tag}"
         print(f"    as-of {w:<5}: {core[col].sum():>4} "
               f"({100*core[col].mean():.1f}%)")
+
+    if n_derived_cols:
+        print(f"\n  Derived genomic features GF2-GF5: {n_derived_cols} columns")
+        for fam, cols in [("GF2 change", ["js_div_4w", "d_prop_h3n2_4w"]),
+                          ("GF3 effort", ["seq_per_100k", "n_total_log_ratio"]),
+                          ("GF4 spatial", ["js_vs_national", "js_vs_others"]),
+                          ("GF5 novelty", ["frac_offdominant"])]:
+            present = [c for c in cols
+                       if f"asof_L8_16_{c}" in master.columns]
+            if not present:
+                continue
+            n = int(core[f"asof_L8_16_{present[0]}"].notna().sum())
+            print(f"    {fam:<12} as-of L8-16 defined on {n}/{len(core)} "
+                  f"core rows ({100 * n / len(core):.1f}%)")
 
     total_oracle = master["has_genomic_oracle"].sum()
     # 734 was the validated count on the original three seasons; quoting it

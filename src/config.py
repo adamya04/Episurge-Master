@@ -158,7 +158,6 @@ def verify_no_censoring(delay_df, season_col="season",
     for label, grp in delay_df.groupby(season_col):
         if label not in SEASONS:
             continue
-        _, _, _ = None, None, None
         pub_end = datetime.strptime(fetch_window(label)[1], "%Y/%m/%d")
         g = grp.copy()
         g[collection_col] = pd.to_datetime(g[collection_col])
