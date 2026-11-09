@@ -73,6 +73,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+_analysis_dir = str(Path(__file__).resolve().parent)
+if _analysis_dir not in sys.path:
+    sys.path.insert(0, _analysis_dir)
+import plotstyle                 # shared fonts, palette and DPI
+plotstyle.apply()
+
 PROCESSED = Path("data/processed")
 REPORTS = Path("data/reports")
 FIGURES = Path("figures")
@@ -111,7 +117,7 @@ B2_PARAMS = dict(max_iter=300, learning_rate=0.05, max_depth=3,
                  min_samples_leaf=20, l2_regularization=1.0,
                  early_stopping=False)
 
-COLOURS = {"B0": "#888888", "B1": "#e8a33d", "B2": "#1f4e79"}
+COLOURS = plotstyle.MODEL_COLOURS   # pinned to the same hexes as before
 NAMES = {"B0": "B0 persistence", "B1": "B1 climatological",
          "B2": "B2 gradient boosting"}
 
@@ -461,13 +467,10 @@ def fig_by_horizon(summary):
     ax.set_title("Baseline forecast error by horizon", fontsize=12, loc="left")
     ax.set_xticks(HORIZONS)
     ax.legend(frameon=False, fontsize=9)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(axis="y", alpha=0.25, linewidth=0.6)
-    ax.set_axisbelow(True)
+    plotstyle.finish(ax)
     fig.tight_layout()
     out = FIGURES / "fig_baseline_by_horizon.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 
@@ -506,17 +509,14 @@ def fig_skill_by_fold(res):
         ax.set_title(NAMES[model], fontsize=11, loc="left")
         ax.set_xlabel("Forecast horizon (weeks)")
         ax.set_xticks(HORIZONS)
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-        ax.grid(axis="y", alpha=0.25, linewidth=0.6)
-        ax.set_axisbelow(True)
+        plotstyle.finish(ax)
     axes[0].set_ylabel("MAE improvement over persistence (%)")
     axes[0].legend(frameon=False, fontsize=8, ncol=2, title="fold")
     fig.suptitle("Skill varies by fold: a horizon whose sign flips supports no claim",
                  fontsize=12, x=0.01, ha="left")
     fig.tight_layout()
     out = FIGURES / "fig_baseline_skill_by_fold.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 
@@ -539,13 +539,10 @@ def fig_skill(a, base):
                  "baseline is the real bar there", fontsize=11, loc="left")
     ax.set_xticks(HORIZONS)
     ax.legend(frameon=False, fontsize=9)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(axis="y", alpha=0.25, linewidth=0.6)
-    ax.set_axisbelow(True)
+    plotstyle.finish(ax)
     fig.tight_layout()
     out = FIGURES / "fig_baseline_skill_vs_persistence.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 

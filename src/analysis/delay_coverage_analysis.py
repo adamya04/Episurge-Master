@@ -63,6 +63,12 @@ import matplotlib
 matplotlib.use("Agg")           # no display needed; write files only
 import matplotlib.pyplot as plt
 
+_analysis_dir = str(Path(__file__).resolve().parent)
+if _analysis_dir not in sys.path:
+    sys.path.insert(0, _analysis_dir)
+import plotstyle                 # shared fonts, palette and DPI
+plotstyle.apply()
+
 PROCESSED = Path("data/processed")
 REPORTS = Path("data/reports")
 FIGURES = Path("figures")
@@ -292,10 +298,8 @@ def delay_summary():
 # ──────────────────────────────────────────────────────────────────────
 
 def _style(ax):
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(axis="y", alpha=0.25, linewidth=0.6)
-    ax.set_axisbelow(True)
+    # delegates to the shared module so every EpiSurge figure matches
+    return plotstyle.finish(ax)
 
 
 def fig_crossover(byweek, core):
@@ -339,7 +343,7 @@ def fig_crossover(byweek, core):
     _style(ax)
     fig.tight_layout()
     out = FIGURES / "fig_coverage_crossover.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 
@@ -368,7 +372,7 @@ def fig_vs_peak(byoffset):
     _style(ax)
     fig.tight_layout()
     out = FIGURES / "fig_coverage_vs_peak.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 
@@ -408,7 +412,7 @@ def fig_onset(byweek, peaks):
                  fontsize=12, x=0.01, ha="left")
     fig.tight_layout()
     out = FIGURES / "fig_onset_gap.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 
@@ -443,7 +447,7 @@ def fig_delay(d):
     _style(ax)
     fig.tight_layout()
     out = FIGURES / "fig_delay_distribution.png"
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=plotstyle.DPI)
     plt.close(fig)
     return out
 

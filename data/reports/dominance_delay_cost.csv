@@ -1,0 +1,535 @@
+window,fold,test_season,horizon,contrast,label,stratum,n,skill_pct,ci_lo,ci_hi
+L8_16,fold1,2017-18,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,307,13.21,4.04,21.89
+L8_16,fold1,2017-18,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,167,20.23,5.49,32.31
+L8_16,fold1,2017-18,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,140,5.59,-4.21,13.63
+L8_16,fold1,2017-18,1,reg ORACLE vs reg as-of,"delay cost, regional",all,307,2.59,-3.8,8.7
+L8_16,fold1,2017-18,1,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,167,12.61,,
+L8_16,fold1,2017-18,1,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,140,-8.26,,
+L8_16,fold1,2017-18,1,reg as-of vs nat as-of,"regional information, deployable",all,307,-10.62,-17.77,-3.77
+L8_16,fold1,2017-18,1,reg as-of vs nat as-of,"regional information, deployable",pre-peak,167,-10.51,,
+L8_16,fold1,2017-18,1,reg as-of vs nat as-of,"regional information, deployable",peak or after,140,-10.75,,
+L8_16,fold1,2017-18,1,reg ORACLE vs nat ORACLE,"regional information, oracle",all,307,-24.16,-30.74,-17.99
+L8_16,fold1,2017-18,1,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,167,-21.06,,
+L8_16,fold1,2017-18,1,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,140,-27.0,,
+L8_16,fold1,2017-18,1,nat as-of vs train-majority,deployable genomics vs trivial rule,all,307,39.17,31.08,46.29
+L8_16,fold1,2017-18,1,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,167,30.18,,
+L8_16,fold1,2017-18,1,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,140,46.64,,
+L8_16,fold1,2017-18,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,307,47.21,39.34,54.97
+L8_16,fold1,2017-18,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,167,44.3,,
+L8_16,fold1,2017-18,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,140,49.62,,
+L8_16,fold2,2018-19,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,309,53.11,45.68,59.75
+L8_16,fold2,2018-19,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,187,51.11,41.24,59.83
+L8_16,fold2,2018-19,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,122,56.6,48.52,63.99
+L8_16,fold2,2018-19,1,reg ORACLE vs reg as-of,"delay cost, regional",all,309,46.31,35.54,55.42
+L8_16,fold2,2018-19,1,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,187,47.54,,
+L8_16,fold2,2018-19,1,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,122,43.85,,
+L8_16,fold2,2018-19,1,reg as-of vs nat as-of,"regional information, deployable",all,309,-9.29,-16.69,-1.9
+L8_16,fold2,2018-19,1,reg as-of vs nat as-of,"regional information, deployable",pre-peak,187,-14.71,,
+L8_16,fold2,2018-19,1,reg as-of vs nat as-of,"regional information, deployable",peak or after,122,0.14,,
+L8_16,fold2,2018-19,1,reg ORACLE vs nat ORACLE,"regional information, oracle",all,309,-25.15,-35.52,-15.1
+L8_16,fold2,2018-19,1,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,187,-23.09,,
+L8_16,fold2,2018-19,1,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,122,-29.2,,
+L8_16,fold2,2018-19,1,nat as-of vs train-majority,deployable genomics vs trivial rule,all,309,17.46,11.65,23.44
+L8_16,fold2,2018-19,1,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,187,28.74,,
+L8_16,fold2,2018-19,1,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,122,-13.99,,
+L8_16,fold2,2018-19,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,309,61.3,54.48,67.25
+L8_16,fold2,2018-19,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,187,65.17,,
+L8_16,fold2,2018-19,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,122,50.53,,
+L8_16,fold3,2019-20,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,236,40.06,30.69,46.99
+L8_16,fold3,2019-20,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,176,50.21,39.11,58.01
+L8_16,fold3,2019-20,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,60,-14.51,-27.96,-5.16
+L8_16,fold3,2019-20,1,reg ORACLE vs reg as-of,"delay cost, regional",all,236,29.65,18.63,39.24
+L8_16,fold3,2019-20,1,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,176,37.48,,
+L8_16,fold3,2019-20,1,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,60,-13.88,,
+L8_16,fold3,2019-20,1,reg as-of vs nat as-of,"regional information, deployable",all,236,-2.44,-10.75,5.75
+L8_16,fold3,2019-20,1,reg as-of vs nat as-of,"regional information, deployable",pre-peak,176,-2.97,,
+L8_16,fold3,2019-20,1,reg as-of vs nat as-of,"regional information, deployable",peak or after,60,0.42,,
+L8_16,fold3,2019-20,1,reg ORACLE vs nat ORACLE,"regional information, oracle",all,236,-20.23,-34.06,-8.85
+L8_16,fold3,2019-20,1,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,176,-29.3,,
+L8_16,fold3,2019-20,1,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,60,0.97,,
+L8_16,fold3,2019-20,1,nat as-of vs train-majority,deployable genomics vs trivial rule,all,236,36.79,32.05,41.15
+L8_16,fold3,2019-20,1,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,176,25.51,,
+L8_16,fold3,2019-20,1,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,60,65.15,,
+L8_16,fold3,2019-20,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,236,62.11,55.35,66.63
+L8_16,fold3,2019-20,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,176,62.91,,
+L8_16,fold3,2019-20,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,60,60.1,,
+L8_16,fold4,2022-23,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,287,48.39,40.27,55.71
+L8_16,fold4,2022-23,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,49.47,24.11,64.13
+L8_16,fold4,2022-23,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,217,48.13,39.59,55.66
+L8_16,fold4,2022-23,1,reg ORACLE vs reg as-of,"delay cost, regional",all,287,34.13,23.99,44.39
+L8_16,fold4,2022-23,1,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,38.26,,
+L8_16,fold4,2022-23,1,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,217,33.2,,
+L8_16,fold4,2022-23,1,reg as-of vs nat as-of,"regional information, deployable",all,287,-8.26,-15.0,-2.58
+L8_16,fold4,2022-23,1,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,1,reg as-of vs nat as-of,"regional information, deployable",peak or after,217,-10.31,,
+L8_16,fold4,2022-23,1,reg ORACLE vs nat ORACLE,"regional information, oracle",all,287,-38.18,-49.25,-27.94
+L8_16,fold4,2022-23,1,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-22.2,,
+L8_16,fold4,2022-23,1,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,217,-42.06,,
+L8_16,fold4,2022-23,1,nat as-of vs train-majority,deployable genomics vs trivial rule,all,287,28.67,24.01,32.87
+L8_16,fold4,2022-23,1,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,1,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,217,33.42,,
+L8_16,fold4,2022-23,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,287,63.19,54.1,69.84
+L8_16,fold4,2022-23,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,49.47,,
+L8_16,fold4,2022-23,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,217,65.46,,
+L8_16,fold5,2023-24,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,318,67.57,64.6,71.09
+L8_16,fold5,2023-24,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,118,77.99,73.74,81.99
+L8_16,fold5,2023-24,1,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,200,55.31,49.98,60.12
+L8_16,fold5,2023-24,1,reg ORACLE vs reg as-of,"delay cost, regional",all,318,64.09,57.21,71.07
+L8_16,fold5,2023-24,1,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,118,76.08,,
+L8_16,fold5,2023-24,1,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,200,48.95,,
+L8_16,fold5,2023-24,1,reg as-of vs nat as-of,"regional information, deployable",all,318,-11.13,-21.14,-2.31
+L8_16,fold5,2023-24,1,reg as-of vs nat as-of,"regional information, deployable",pre-peak,118,-14.77,,
+L8_16,fold5,2023-24,1,reg as-of vs nat as-of,"regional information, deployable",peak or after,200,-6.85,,
+L8_16,fold5,2023-24,1,reg ORACLE vs nat ORACLE,"regional information, oracle",all,318,-23.04,-36.87,-10.89
+L8_16,fold5,2023-24,1,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,118,-24.73,,
+L8_16,fold5,2023-24,1,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,200,-22.05,,
+L8_16,fold5,2023-24,1,nat as-of vs train-majority,deployable genomics vs trivial rule,all,318,25.62,17.13,33.94
+L8_16,fold5,2023-24,1,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,118,15.47,,
+L8_16,fold5,2023-24,1,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,200,34.83,,
+L8_16,fold5,2023-24,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,318,75.88,71.19,80.09
+L8_16,fold5,2023-24,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,118,81.39,,
+L8_16,fold5,2023-24,1,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,200,70.87,,
+L8_16,fold1,2017-18,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,297,12.06,4.14,18.54
+L8_16,fold1,2017-18,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,167,23.41,10.24,34.5
+L8_16,fold1,2017-18,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,130,-1.12,-9.07,5.88
+L8_16,fold1,2017-18,2,reg ORACLE vs reg as-of,"delay cost, regional",all,297,0.08,-15.85,13.4
+L8_16,fold1,2017-18,2,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,167,4.9,,
+L8_16,fold1,2017-18,2,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,130,-5.66,,
+L8_16,fold1,2017-18,2,reg as-of vs nat as-of,"regional information, deployable",all,297,-8.96,-17.4,-1.48
+L8_16,fold1,2017-18,2,reg as-of vs nat as-of,"regional information, deployable",pre-peak,167,-10.4,,
+L8_16,fold1,2017-18,2,reg as-of vs nat as-of,"regional information, deployable",peak or after,130,-7.29,,
+L8_16,fold1,2017-18,2,reg ORACLE vs nat ORACLE,"regional information, oracle",all,297,-23.8,-34.13,-13.07
+L8_16,fold1,2017-18,2,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,167,-37.09,,
+L8_16,fold1,2017-18,2,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,130,-12.12,,
+L8_16,fold1,2017-18,2,nat as-of vs train-majority,deployable genomics vs trivial rule,all,297,39.98,31.9,47.29
+L8_16,fold1,2017-18,2,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,167,32.32,,
+L8_16,fold1,2017-18,2,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,130,46.95,,
+L8_16,fold1,2017-18,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,297,47.22,39.93,54.16
+L8_16,fold1,2017-18,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,167,48.17,,
+L8_16,fold1,2017-18,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,130,46.36,,
+L8_16,fold2,2018-19,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,301,53.83,48.58,59.46
+L8_16,fold2,2018-19,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,189,53.28,46.58,60.02
+L8_16,fold2,2018-19,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,112,54.87,45.35,63.3
+L8_16,fold2,2018-19,2,reg ORACLE vs reg as-of,"delay cost, regional",all,301,51.76,41.36,59.94
+L8_16,fold2,2018-19,2,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,189,52.42,,
+L8_16,fold2,2018-19,2,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,112,50.39,,
+L8_16,fold2,2018-19,2,reg as-of vs nat as-of,"regional information, deployable",all,301,-8.63,-16.56,-0.19
+L8_16,fold2,2018-19,2,reg as-of vs nat as-of,"regional information, deployable",pre-peak,189,-13.12,,
+L8_16,fold2,2018-19,2,reg as-of vs nat as-of,"regional information, deployable",peak or after,112,-0.23,,
+L8_16,fold2,2018-19,2,reg ORACLE vs nat ORACLE,"regional information, oracle",all,301,-13.5,-27.63,-1.49
+L8_16,fold2,2018-19,2,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,189,-15.22,,
+L8_16,fold2,2018-19,2,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,112,-10.18,,
+L8_16,fold2,2018-19,2,nat as-of vs train-majority,deployable genomics vs trivial rule,all,301,14.73,9.46,20.21
+L8_16,fold2,2018-19,2,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,189,25.72,,
+L8_16,fold2,2018-19,2,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,112,-17.91,,
+L8_16,fold2,2018-19,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,301,60.63,53.67,66.11
+L8_16,fold2,2018-19,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,189,65.3,,
+L8_16,fold2,2018-19,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,112,46.78,,
+L8_16,fold3,2019-20,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,226,47.7,39.98,52.9
+L8_16,fold3,2019-20,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,176,55.87,47.56,60.61
+L8_16,fold3,2019-20,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,50,-0.67,-9.06,8.88
+L8_16,fold3,2019-20,2,reg ORACLE vs reg as-of,"delay cost, regional",all,226,35.5,23.9,45.1
+L8_16,fold3,2019-20,2,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,176,41.69,,
+L8_16,fold3,2019-20,2,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,50,-2.25,,
+L8_16,fold3,2019-20,2,reg as-of vs nat as-of,"regional information, deployable",all,226,-1.99,-10.31,6.86
+L8_16,fold3,2019-20,2,reg as-of vs nat as-of,"regional information, deployable",pre-peak,176,-2.42,,
+L8_16,fold3,2019-20,2,reg as-of vs nat as-of,"regional information, deployable",peak or after,50,0.54,,
+L8_16,fold3,2019-20,2,reg ORACLE vs nat ORACLE,"regional information, oracle",all,226,-25.78,-39.79,-12.62
+L8_16,fold3,2019-20,2,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,176,-35.33,,
+L8_16,fold3,2019-20,2,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,50,-1.03,,
+L8_16,fold3,2019-20,2,nat as-of vs train-majority,deployable genomics vs trivial rule,all,226,34.72,30.66,38.53
+L8_16,fold3,2019-20,2,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,176,24.97,,
+L8_16,fold3,2019-20,2,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,50,63.11,,
+L8_16,fold3,2019-20,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,226,65.86,60.0,70.41
+L8_16,fold3,2019-20,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,176,66.89,,
+L8_16,fold3,2019-20,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,50,62.86,,
+L8_16,fold4,2022-23,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,277,47.99,40.51,53.91
+L8_16,fold4,2022-23,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,47.81,19.71,61.85
+L8_16,fold4,2022-23,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,207,48.04,42.14,53.25
+L8_16,fold4,2022-23,2,reg ORACLE vs reg as-of,"delay cost, regional",all,277,30.62,19.15,40.75
+L8_16,fold4,2022-23,2,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,37.26,,
+L8_16,fold4,2022-23,2,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,207,29.15,,
+L8_16,fold4,2022-23,2,reg as-of vs nat as-of,"regional information, deployable",all,277,-5.6,-10.46,-1.62
+L8_16,fold4,2022-23,2,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,2,reg as-of vs nat as-of,"regional information, deployable",peak or after,207,-6.92,,
+L8_16,fold4,2022-23,2,reg ORACLE vs nat ORACLE,"regional information, oracle",all,277,-40.87,-52.69,-31.66
+L8_16,fold4,2022-23,2,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-20.21,,
+L8_16,fold4,2022-23,2,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,207,-45.79,,
+L8_16,fold4,2022-23,2,nat as-of vs train-majority,deployable genomics vs trivial rule,all,277,24.77,19.97,28.99
+L8_16,fold4,2022-23,2,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,2,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,207,28.94,,
+L8_16,fold4,2022-23,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,277,60.88,52.79,66.8
+L8_16,fold4,2022-23,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,47.81,,
+L8_16,fold4,2022-23,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,207,63.08,,
+L8_16,fold5,2023-24,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,309,67.92,64.38,71.72
+L8_16,fold5,2023-24,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,119,77.15,73.22,80.76
+L8_16,fold5,2023-24,2,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,190,57.2,52.57,61.72
+L8_16,fold5,2023-24,2,reg ORACLE vs reg as-of,"delay cost, regional",all,309,65.91,59.23,72.27
+L8_16,fold5,2023-24,2,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,119,76.22,,
+L8_16,fold5,2023-24,2,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,190,52.72,,
+L8_16,fold5,2023-24,2,reg as-of vs nat as-of,"regional information, deployable",all,309,-9.06,-17.26,-1.33
+L8_16,fold5,2023-24,2,reg as-of vs nat as-of,"regional information, deployable",pre-peak,119,-13.89,,
+L8_16,fold5,2023-24,2,reg as-of vs nat as-of,"regional information, deployable",peak or after,190,-3.44,,
+L8_16,fold5,2023-24,2,reg ORACLE vs nat ORACLE,"regional information, oracle",all,309,-15.9,-26.13,-4.21
+L8_16,fold5,2023-24,2,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,119,-18.56,,
+L8_16,fold5,2023-24,2,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,190,-14.25,,
+L8_16,fold5,2023-24,2,nat as-of vs train-majority,deployable genomics vs trivial rule,all,309,22.36,13.95,30.82
+L8_16,fold5,2023-24,2,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,119,14.7,,
+L8_16,fold5,2023-24,2,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,190,29.69,,
+L8_16,fold5,2023-24,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,309,75.1,70.02,79.71
+L8_16,fold5,2023-24,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,119,80.51,,
+L8_16,fold5,2023-24,2,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,190,69.91,,
+L8_16,fold1,2017-18,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,287,17.73,10.46,23.53
+L8_16,fold1,2017-18,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,167,27.42,15.94,37.22
+L8_16,fold1,2017-18,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,120,4.68,-7.49,15.26
+L8_16,fold1,2017-18,3,reg ORACLE vs reg as-of,"delay cost, regional",all,287,3.76,-7.01,12.66
+L8_16,fold1,2017-18,3,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,167,6.31,,
+L8_16,fold1,2017-18,3,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,120,0.17,,
+L8_16,fold1,2017-18,3,reg as-of vs nat as-of,"regional information, deployable",all,287,-8.23,-16.64,-0.72
+L8_16,fold1,2017-18,3,reg as-of vs nat as-of,"regional information, deployable",pre-peak,167,-10.32,,
+L8_16,fold1,2017-18,3,reg as-of vs nat as-of,"regional information, deployable",peak or after,120,-5.41,,
+L8_16,fold1,2017-18,3,reg ORACLE vs nat ORACLE,"regional information, oracle",all,287,-26.6,-36.55,-17.39
+L8_16,fold1,2017-18,3,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,167,-42.42,,
+L8_16,fold1,2017-18,3,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,120,-10.39,,
+L8_16,fold1,2017-18,3,nat as-of vs train-majority,deployable genomics vs trivial rule,all,287,37.71,29.84,44.53
+L8_16,fold1,2017-18,3,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,167,30.27,,
+L8_16,fold1,2017-18,3,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,120,45.53,,
+L8_16,fold1,2017-18,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,287,48.75,41.45,55.27
+L8_16,fold1,2017-18,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,167,49.39,,
+L8_16,fold1,2017-18,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,120,48.08,,
+L8_16,fold2,2018-19,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,291,56.07,50.0,61.88
+L8_16,fold2,2018-19,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,189,56.19,50.03,61.96
+L8_16,fold2,2018-19,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,102,55.83,43.36,66.34
+L8_16,fold2,2018-19,3,reg ORACLE vs reg as-of,"delay cost, regional",all,291,47.09,31.87,58.35
+L8_16,fold2,2018-19,3,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,189,47.74,,
+L8_16,fold2,2018-19,3,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,102,45.57,,
+L8_16,fold2,2018-19,3,reg as-of vs nat as-of,"regional information, deployable",all,291,-9.14,-16.9,-0.42
+L8_16,fold2,2018-19,3,reg as-of vs nat as-of,"regional information, deployable",pre-peak,189,-13.05,,
+L8_16,fold2,2018-19,3,reg as-of vs nat as-of,"regional information, deployable",peak or after,102,-1.01,,
+L8_16,fold2,2018-19,3,reg ORACLE vs nat ORACLE,"regional information, oracle",all,291,-31.45,-42.61,-18.94
+L8_16,fold2,2018-19,3,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,189,-34.84,,
+L8_16,fold2,2018-19,3,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,102,-24.48,,
+L8_16,fold2,2018-19,3,nat as-of vs train-majority,deployable genomics vs trivial rule,all,291,12.05,7.05,16.62
+L8_16,fold2,2018-19,3,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,189,21.79,,
+L8_16,fold2,2018-19,3,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,102,-18.72,,
+L8_16,fold2,2018-19,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,291,61.36,54.73,67.32
+L8_16,fold2,2018-19,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,189,65.73,,
+L8_16,fold2,2018-19,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,102,47.56,,
+L8_16,fold3,2019-20,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,216,47.08,39.5,52.75
+L8_16,fold3,2019-20,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,176,53.96,45.64,60.23
+L8_16,fold3,2019-20,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,40,-1.95,-8.61,4.21
+L8_16,fold3,2019-20,3,reg ORACLE vs reg as-of,"delay cost, regional",all,216,38.37,29.81,46.41
+L8_16,fold3,2019-20,3,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,176,44.56,,
+L8_16,fold3,2019-20,3,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,40,-5.08,,
+L8_16,fold3,2019-20,3,reg as-of vs nat as-of,"regional information, deployable",all,216,-2.86,-11.58,5.04
+L8_16,fold3,2019-20,3,reg as-of vs nat as-of,"regional information, deployable",pre-peak,176,-2.67,,
+L8_16,fold3,2019-20,3,reg as-of vs nat as-of,"regional information, deployable",peak or after,40,-4.16,,
+L8_16,fold3,2019-20,3,reg ORACLE vs nat ORACLE,"regional information, oracle",all,216,-19.78,-30.29,-7.59
+L8_16,fold3,2019-20,3,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,176,-23.64,,
+L8_16,fold3,2019-20,3,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,40,-7.36,,
+L8_16,fold3,2019-20,3,nat as-of vs train-majority,deployable genomics vs trivial rule,all,216,32.09,27.68,35.63
+L8_16,fold3,2019-20,3,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,176,23.72,,
+L8_16,fold3,2019-20,3,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,40,61.87,,
+L8_16,fold3,2019-20,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,216,64.06,58.56,68.41
+L8_16,fold3,2019-20,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,176,64.89,,
+L8_16,fold3,2019-20,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,40,61.13,,
+L8_16,fold4,2022-23,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,267,49.45,42.39,55.31
+L8_16,fold4,2022-23,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,56.74,33.59,66.67
+L8_16,fold4,2022-23,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,197,47.65,40.61,53.78
+L8_16,fold4,2022-23,3,reg ORACLE vs reg as-of,"delay cost, regional",all,267,33.7,22.05,44.28
+L8_16,fold4,2022-23,3,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,44.49,,
+L8_16,fold4,2022-23,3,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,197,31.19,,
+L8_16,fold4,2022-23,3,reg as-of vs nat as-of,"regional information, deployable",all,267,-5.14,-9.7,-1.51
+L8_16,fold4,2022-23,3,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,3,reg as-of vs nat as-of,"regional information, deployable",peak or after,197,-6.41,,
+L8_16,fold4,2022-23,3,reg ORACLE vs nat ORACLE,"regional information, oracle",all,267,-37.9,-55.3,-21.31
+L8_16,fold4,2022-23,3,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-28.31,,
+L8_16,fold4,2022-23,3,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,197,-39.86,,
+L8_16,fold4,2022-23,3,nat as-of vs train-majority,deployable genomics vs trivial rule,all,267,22.44,17.48,26.79
+L8_16,fold4,2022-23,3,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,3,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,197,26.52,,
+L8_16,fold4,2022-23,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,267,60.79,53.25,66.92
+L8_16,fold4,2022-23,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,56.74,,
+L8_16,fold4,2022-23,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,197,61.53,,
+L8_16,fold5,2023-24,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,299,68.03,63.56,72.45
+L8_16,fold5,2023-24,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,119,76.67,70.75,81.47
+L8_16,fold5,2023-24,3,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,180,57.98,53.92,62.32
+L8_16,fold5,2023-24,3,reg ORACLE vs reg as-of,"delay cost, regional",all,299,66.38,60.3,72.0
+L8_16,fold5,2023-24,3,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,119,76.25,,
+L8_16,fold5,2023-24,3,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,180,53.77,,
+L8_16,fold5,2023-24,3,reg as-of vs nat as-of,"regional information, deployable",all,299,-7.59,-14.92,-0.89
+L8_16,fold5,2023-24,3,reg as-of vs nat as-of,"regional information, deployable",pre-peak,119,-12.17,,
+L8_16,fold5,2023-24,3,reg as-of vs nat as-of,"regional information, deployable",peak or after,180,-2.27,,
+L8_16,fold5,2023-24,3,reg ORACLE vs nat ORACLE,"regional information, oracle",all,299,-13.15,-25.58,-1.54
+L8_16,fold5,2023-24,3,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,119,-14.15,,
+L8_16,fold5,2023-24,3,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,180,-12.5,,
+L8_16,fold5,2023-24,3,nat as-of vs train-majority,deployable genomics vs trivial rule,all,299,19.17,11.36,27.58
+L8_16,fold5,2023-24,3,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,119,12.83,,
+L8_16,fold5,2023-24,3,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,180,25.47,,
+L8_16,fold5,2023-24,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,299,74.16,68.35,79.88
+L8_16,fold5,2023-24,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,119,79.66,,
+L8_16,fold5,2023-24,3,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,180,68.68,,
+L8_16,fold1,2017-18,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,277,23.82,16.78,30.34
+L8_16,fold1,2017-18,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,167,29.94,20.04,39.51
+L8_16,fold1,2017-18,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,110,14.81,3.81,25.58
+L8_16,fold1,2017-18,4,reg ORACLE vs reg as-of,"delay cost, regional",all,277,6.31,-8.24,18.05
+L8_16,fold1,2017-18,4,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,167,9.76,,
+L8_16,fold1,2017-18,4,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,110,1.11,,
+L8_16,fold1,2017-18,4,reg as-of vs nat as-of,"regional information, deployable",all,277,-7.25,-15.51,0.51
+L8_16,fold1,2017-18,4,reg as-of vs nat as-of,"regional information, deployable",pre-peak,167,-8.24,,
+L8_16,fold1,2017-18,4,reg as-of vs nat as-of,"regional information, deployable",peak or after,110,-5.8,,
+L8_16,fold1,2017-18,4,reg ORACLE vs nat ORACLE,"regional information, oracle",all,277,-31.9,-43.88,-21.19
+L8_16,fold1,2017-18,4,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,167,-39.41,,
+L8_16,fold1,2017-18,4,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,110,-22.81,,
+L8_16,fold1,2017-18,4,nat as-of vs train-majority,deployable genomics vs trivial rule,all,277,36.16,27.86,42.82
+L8_16,fold1,2017-18,4,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,167,29.21,,
+L8_16,fold1,2017-18,4,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,110,44.23,,
+L8_16,fold1,2017-18,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,277,51.37,43.52,58.06
+L8_16,fold1,2017-18,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,167,50.41,,
+L8_16,fold1,2017-18,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,110,52.49,,
+L8_16,fold2,2018-19,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,281,54.92,48.29,61.08
+L8_16,fold2,2018-19,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,189,55.45,48.22,62.26
+L8_16,fold2,2018-19,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,92,53.76,41.1,63.33
+L8_16,fold2,2018-19,4,reg ORACLE vs reg as-of,"delay cost, regional",all,281,46.96,36.22,55.87
+L8_16,fold2,2018-19,4,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,189,46.42,,
+L8_16,fold2,2018-19,4,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,92,48.28,,
+L8_16,fold2,2018-19,4,reg as-of vs nat as-of,"regional information, deployable",all,281,-9.11,-15.98,-2.09
+L8_16,fold2,2018-19,4,reg as-of vs nat as-of,"regional information, deployable",pre-peak,189,-12.56,,
+L8_16,fold2,2018-19,4,reg as-of vs nat as-of,"regional information, deployable",peak or after,92,-1.41,,
+L8_16,fold2,2018-19,4,reg ORACLE vs nat ORACLE,"regional information, oracle",all,281,-28.4,-40.64,-15.84
+L8_16,fold2,2018-19,4,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,189,-35.38,,
+L8_16,fold2,2018-19,4,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,92,-13.42,,
+L8_16,fold2,2018-19,4,nat as-of vs train-majority,deployable genomics vs trivial rule,all,281,9.87,5.08,14.84
+L8_16,fold2,2018-19,4,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,189,19.68,,
+L8_16,fold2,2018-19,4,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,92,-23.9,,
+L8_16,fold2,2018-19,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,281,59.37,51.76,66.11
+L8_16,fold2,2018-19,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,189,64.22,,
+L8_16,fold2,2018-19,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,92,42.71,,
+L8_16,fold3,2019-20,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,207,49.75,42.92,54.15
+L8_16,fold3,2019-20,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,176,55.67,48.92,60.12
+L8_16,fold3,2019-20,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,31,-2.38,-11.23,5.7
+L8_16,fold3,2019-20,4,reg ORACLE vs reg as-of,"delay cost, regional",all,207,40.93,31.66,48.12
+L8_16,fold3,2019-20,4,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,176,47.08,,
+L8_16,fold3,2019-20,4,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,31,-13.89,,
+L8_16,fold3,2019-20,4,reg as-of vs nat as-of,"regional information, deployable",all,207,-4.4,-12.44,2.95
+L8_16,fold3,2019-20,4,reg as-of vs nat as-of,"regional information, deployable",pre-peak,176,-4.52,,
+L8_16,fold3,2019-20,4,reg as-of vs nat as-of,"regional information, deployable",peak or after,31,-3.28,,
+L8_16,fold3,2019-20,4,reg ORACLE vs nat ORACLE,"regional information, oracle",all,207,-22.72,-36.03,-8.98
+L8_16,fold3,2019-20,4,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,176,-24.77,,
+L8_16,fold3,2019-20,4,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,31,-14.89,,
+L8_16,fold3,2019-20,4,nat as-of vs train-majority,deployable genomics vs trivial rule,all,207,30.01,25.96,33.69
+L8_16,fold3,2019-20,4,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,176,23.86,,
+L8_16,fold3,2019-20,4,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,31,59.1,,
+L8_16,fold3,2019-20,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,207,64.83,59.54,68.59
+L8_16,fold3,2019-20,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,176,66.25,,
+L8_16,fold3,2019-20,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,31,58.13,,
+L8_16,fold4,2022-23,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,257,48.52,41.24,54.49
+L8_16,fold4,2022-23,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,57.05,36.41,68.0
+L8_16,fold4,2022-23,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,187,46.31,40.35,52.77
+L8_16,fold4,2022-23,4,reg ORACLE vs reg as-of,"delay cost, regional",all,257,37.49,27.29,46.54
+L8_16,fold4,2022-23,4,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,42.3,,
+L8_16,fold4,2022-23,4,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,187,36.3,,
+L8_16,fold4,2022-23,4,reg as-of vs nat as-of,"regional information, deployable",all,257,-3.56,-7.52,-0.22
+L8_16,fold4,2022-23,4,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,4,reg as-of vs nat as-of,"regional information, deployable",peak or after,187,-4.49,,
+L8_16,fold4,2022-23,4,reg ORACLE vs nat ORACLE,"regional information, oracle",all,257,-25.76,-40.81,-9.24
+L8_16,fold4,2022-23,4,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-34.36,,
+L8_16,fold4,2022-23,4,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,187,-23.98,,
+L8_16,fold4,2022-23,4,nat as-of vs train-majority,deployable genomics vs trivial rule,all,257,20.34,15.31,25.06
+L8_16,fold4,2022-23,4,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,4,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,187,24.33,,
+L8_16,fold4,2022-23,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,257,58.99,50.82,65.88
+L8_16,fold4,2022-23,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,57.05,,
+L8_16,fold4,2022-23,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,187,59.38,,
+L8_16,fold5,2023-24,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,290,66.86,62.59,71.61
+L8_16,fold5,2023-24,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,120,74.74,68.35,80.15
+L8_16,fold5,2023-24,4,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,170,57.78,54.44,61.7
+L8_16,fold5,2023-24,4,reg ORACLE vs reg as-of,"delay cost, regional",all,290,64.77,58.1,70.69
+L8_16,fold5,2023-24,4,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,120,72.78,,
+L8_16,fold5,2023-24,4,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,170,54.48,,
+L8_16,fold5,2023-24,4,reg as-of vs nat as-of,"regional information, deployable",all,290,-6.66,-13.57,-0.62
+L8_16,fold5,2023-24,4,reg as-of vs nat as-of,"regional information, deployable",pre-peak,120,-11.99,,
+L8_16,fold5,2023-24,4,reg as-of vs nat as-of,"regional information, deployable",peak or after,170,-0.52,,
+L8_16,fold5,2023-24,4,reg ORACLE vs nat ORACLE,"regional information, oracle",all,290,-13.39,-27.49,-1.49
+L8_16,fold5,2023-24,4,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,120,-20.68,,
+L8_16,fold5,2023-24,4,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,170,-8.37,,
+L8_16,fold5,2023-24,4,nat as-of vs train-majority,deployable genomics vs trivial rule,all,290,16.57,8.03,25.34
+L8_16,fold5,2023-24,4,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,120,12.8,,
+L8_16,fold5,2023-24,4,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,170,20.52,,
+L8_16,fold5,2023-24,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,290,72.35,65.86,77.97
+L8_16,fold5,2023-24,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,120,77.98,,
+L8_16,fold5,2023-24,4,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,170,66.44,,
+L8_16,fold1,2017-18,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,259,28.5,22.78,34.72
+L8_16,fold1,2017-18,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,169,41.18,34.45,48.76
+L8_16,fold1,2017-18,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,90,3.12,-6.12,12.91
+L8_16,fold1,2017-18,6,reg ORACLE vs reg as-of,"delay cost, regional",all,259,9.93,-3.42,21.59
+L8_16,fold1,2017-18,6,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,169,19.42,,
+L8_16,fold1,2017-18,6,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,90,-9.16,,
+L8_16,fold1,2017-18,6,reg as-of vs nat as-of,"regional information, deployable",all,259,-6.03,-13.34,1.23
+L8_16,fold1,2017-18,6,reg as-of vs nat as-of,"regional information, deployable",pre-peak,169,-6.2,,
+L8_16,fold1,2017-18,6,reg as-of vs nat as-of,"regional information, deployable",peak or after,90,-5.67,,
+L8_16,fold1,2017-18,6,reg ORACLE vs nat ORACLE,"regional information, oracle",all,259,-33.56,-43.75,-22.87
+L8_16,fold1,2017-18,6,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,169,-45.49,,
+L8_16,fold1,2017-18,6,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,90,-19.07,,
+L8_16,fold1,2017-18,6,nat as-of vs train-majority,deployable genomics vs trivial rule,all,259,32.33,24.85,37.91
+L8_16,fold1,2017-18,6,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,169,26.51,,
+L8_16,fold1,2017-18,6,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,90,41.58,,
+L8_16,fold1,2017-18,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,259,51.61,43.07,59.1
+L8_16,fold1,2017-18,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,169,56.77,,
+L8_16,fold1,2017-18,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,90,43.41,,
+L8_16,fold2,2018-19,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,262,55.37,48.55,60.8
+L8_16,fold2,2018-19,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,190,57.3,50.65,62.85
+L8_16,fold2,2018-19,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,72,50.08,35.75,61.95
+L8_16,fold2,2018-19,6,reg ORACLE vs reg as-of,"delay cost, regional",all,262,47.63,36.69,55.32
+L8_16,fold2,2018-19,6,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,190,45.97,,
+L8_16,fold2,2018-19,6,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,72,52.46,,
+L8_16,fold2,2018-19,6,reg as-of vs nat as-of,"regional information, deployable",all,262,-7.24,-13.51,0.52
+L8_16,fold2,2018-19,6,reg as-of vs nat as-of,"regional information, deployable",pre-peak,190,-8.88,,
+L8_16,fold2,2018-19,6,reg as-of vs nat as-of,"regional information, deployable",peak or after,72,-2.72,,
+L8_16,fold2,2018-19,6,reg ORACLE vs nat ORACLE,"regional information, oracle",all,262,-25.84,-39.89,-13.84
+L8_16,fold2,2018-19,6,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,190,-37.76,,
+L8_16,fold2,2018-19,6,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,72,2.18,,
+L8_16,fold2,2018-19,6,nat as-of vs train-majority,deployable genomics vs trivial rule,all,262,2.87,-2.58,7.77
+L8_16,fold2,2018-19,6,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,190,11.68,,
+L8_16,fold2,2018-19,6,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,72,-33.83,,
+L8_16,fold2,2018-19,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,262,56.65,48.93,63.6
+L8_16,fold2,2018-19,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,190,62.29,,
+L8_16,fold2,2018-19,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,72,33.19,,
+L8_16,fold3,2019-20,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,188,49.97,44.07,55.03
+L8_16,fold3,2019-20,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,175,52.43,45.52,58.14
+L8_16,fold3,2019-20,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,13,0.75,-6.9,10.38
+L8_16,fold3,2019-20,6,reg ORACLE vs reg as-of,"delay cost, regional",all,188,44.31,33.23,53.39
+L8_16,fold3,2019-20,6,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,175,45.15,,
+L8_16,fold3,2019-20,6,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,13,27.87,,
+L8_16,fold3,2019-20,6,reg as-of vs nat as-of,"regional information, deployable",all,188,-3.77,-11.36,3.41
+L8_16,fold3,2019-20,6,reg as-of vs nat as-of,"regional information, deployable",pre-peak,175,-3.68,,
+L8_16,fold3,2019-20,6,reg as-of vs nat as-of,"regional information, deployable",peak or after,13,-5.58,,
+L8_16,fold3,2019-20,6,reg ORACLE vs nat ORACLE,"regional information, oracle",all,188,-15.5,-31.79,2.26
+L8_16,fold3,2019-20,6,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,175,-19.55,,
+L8_16,fold3,2019-20,6,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,13,23.28,,
+L8_16,fold3,2019-20,6,nat as-of vs train-majority,deployable genomics vs trivial rule,all,188,24.3,20.51,27.74
+L8_16,fold3,2019-20,6,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,175,20.65,,
+L8_16,fold3,2019-20,6,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,13,60.57,,
+L8_16,fold3,2019-20,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,188,62.12,57.54,66.53
+L8_16,fold3,2019-20,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,175,62.25,,
+L8_16,fold3,2019-20,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,13,60.87,,
+L8_16,fold4,2022-23,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,237,48.97,44.1,52.89
+L8_16,fold4,2022-23,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,57.1,46.66,64.3
+L8_16,fold4,2022-23,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,167,46.59,41.81,50.98
+L8_16,fold4,2022-23,6,reg ORACLE vs reg as-of,"delay cost, regional",all,237,39.42,27.9,48.85
+L8_16,fold4,2022-23,6,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,45.99,,
+L8_16,fold4,2022-23,6,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,167,37.56,,
+L8_16,fold4,2022-23,6,reg as-of vs nat as-of,"regional information, deployable",all,237,-2.37,-5.41,0.24
+L8_16,fold4,2022-23,6,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,6,reg as-of vs nat as-of,"regional information, deployable",peak or after,167,-3.07,,
+L8_16,fold4,2022-23,6,reg ORACLE vs nat ORACLE,"regional information, oracle",all,237,-21.52,-35.05,-8.9
+L8_16,fold4,2022-23,6,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-25.9,,
+L8_16,fold4,2022-23,6,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,167,-20.49,,
+L8_16,fold4,2022-23,6,nat as-of vs train-majority,deployable genomics vs trivial rule,all,237,17.6,13.26,20.73
+L8_16,fold4,2022-23,6,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,6,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,167,21.64,,
+L8_16,fold4,2022-23,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,237,57.95,52.3,62.16
+L8_16,fold4,2022-23,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,57.1,,
+L8_16,fold4,2022-23,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,167,58.15,,
+L8_16,fold5,2023-24,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,270,65.04,59.57,71.83
+L8_16,fold5,2023-24,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,120,71.06,62.72,78.74
+L8_16,fold5,2023-24,6,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,150,57.94,53.17,62.72
+L8_16,fold5,2023-24,6,reg ORACLE vs reg as-of,"delay cost, regional",all,270,61.68,55.96,68.15
+L8_16,fold5,2023-24,6,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,120,68.61,,
+L8_16,fold5,2023-24,6,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,150,52.6,,
+L8_16,fold5,2023-24,6,reg as-of vs nat as-of,"regional information, deployable",all,270,-5.02,-11.09,0.39
+L8_16,fold5,2023-24,6,reg as-of vs nat as-of,"regional information, deployable",pre-peak,120,-10.16,,
+L8_16,fold5,2023-24,6,reg as-of vs nat as-of,"regional information, deployable",peak or after,150,1.05,,
+L8_16,fold5,2023-24,6,reg ORACLE vs nat ORACLE,"regional information, oracle",all,270,-15.1,-33.66,-0.35
+L8_16,fold5,2023-24,6,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,120,-19.5,,
+L8_16,fold5,2023-24,6,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,150,-11.54,,
+L8_16,fold5,2023-24,6,nat as-of vs train-majority,deployable genomics vs trivial rule,all,270,11.6,2.48,19.67
+L8_16,fold5,2023-24,6,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,120,9.76,,
+L8_16,fold5,2023-24,6,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,150,13.68,,
+L8_16,fold5,2023-24,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,270,69.09,61.31,76.67
+L8_16,fold5,2023-24,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,120,73.88,,
+L8_16,fold5,2023-24,6,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,150,63.7,,
+L8_16,fold1,2017-18,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,240,33.15,27.02,39.97
+L8_16,fold1,2017-18,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,170,43.91,37.62,50.19
+L8_16,fold1,2017-18,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,70,7.15,-6.14,21.87
+L8_16,fold1,2017-18,8,reg ORACLE vs reg as-of,"delay cost, regional",all,240,13.32,3.56,22.44
+L8_16,fold1,2017-18,8,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,170,19.85,,
+L8_16,fold1,2017-18,8,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,70,-2.64,,
+L8_16,fold1,2017-18,8,reg as-of vs nat as-of,"regional information, deployable",all,240,-5.73,-11.23,-0.23
+L8_16,fold1,2017-18,8,reg as-of vs nat as-of,"regional information, deployable",pre-peak,170,-6.06,,
+L8_16,fold1,2017-18,8,reg as-of vs nat as-of,"regional information, deployable",peak or after,70,-4.92,,
+L8_16,fold1,2017-18,8,reg ORACLE vs nat ORACLE,"regional information, oracle",all,240,-37.1,-45.56,-28.52
+L8_16,fold1,2017-18,8,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,170,-51.57,,
+L8_16,fold1,2017-18,8,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,70,-15.98,,
+L8_16,fold1,2017-18,8,nat as-of vs train-majority,deployable genomics vs trivial rule,all,240,28.3,21.67,33.75
+L8_16,fold1,2017-18,8,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,170,25.32,,
+L8_16,fold1,2017-18,8,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,70,34.6,,
+L8_16,fold1,2017-18,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,240,52.07,42.93,60.23
+L8_16,fold1,2017-18,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,170,58.12,,
+L8_16,fold1,2017-18,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,70,39.28,,
+L8_16,fold2,2018-19,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,242,52.44,45.83,58.42
+L8_16,fold2,2018-19,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,190,54.23,48.39,59.47
+L8_16,fold2,2018-19,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,52,45.91,32.58,57.87
+L8_16,fold2,2018-19,8,reg ORACLE vs reg as-of,"delay cost, regional",all,242,42.42,32.43,49.57
+L8_16,fold2,2018-19,8,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,190,42.01,,
+L8_16,fold2,2018-19,8,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,52,43.96,,
+L8_16,fold2,2018-19,8,reg as-of vs nat as-of,"regional information, deployable",all,242,-5.15,-11.01,1.64
+L8_16,fold2,2018-19,8,reg as-of vs nat as-of,"regional information, deployable",pre-peak,190,-5.88,,
+L8_16,fold2,2018-19,8,reg as-of vs nat as-of,"regional information, deployable",peak or after,52,-2.47,,
+L8_16,fold2,2018-19,8,reg ORACLE vs nat ORACLE,"regional information, oracle",all,242,-27.31,-40.15,-15.04
+L8_16,fold2,2018-19,8,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,190,-34.15,,
+L8_16,fold2,2018-19,8,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,52,-6.16,,
+L8_16,fold2,2018-19,8,nat as-of vs train-majority,deployable genomics vs trivial rule,all,242,-2.6,-8.57,2.49
+L8_16,fold2,2018-19,8,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,190,3.68,,
+L8_16,fold2,2018-19,8,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,52,-34.61,,
+L8_16,fold2,2018-19,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,242,51.2,44.63,57.75
+L8_16,fold2,2018-19,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,190,55.91,,
+L8_16,fold2,2018-19,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,52,27.19,,
+L8_16,fold3,2019-20,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,168,51.84,46.33,56.44
+L8_16,fold3,2019-20,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,165,52.53,46.43,57.43
+L8_16,fold3,2019-20,8,reg ORACLE vs reg as-of,"delay cost, regional",all,168,46.23,39.9,53.18
+L8_16,fold3,2019-20,8,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,165,47.19,,
+L8_16,fold3,2019-20,8,reg as-of vs nat as-of,"regional information, deployable",all,168,-3.42,-10.73,3.31
+L8_16,fold3,2019-20,8,reg as-of vs nat as-of,"regional information, deployable",pre-peak,165,-3.67,,
+L8_16,fold3,2019-20,8,reg ORACLE vs nat ORACLE,"regional information, oracle",all,168,-15.47,-30.89,-0.58
+L8_16,fold3,2019-20,8,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,165,-15.32,,
+L8_16,fold3,2019-20,8,nat as-of vs train-majority,deployable genomics vs trivial rule,all,168,19.25,15.96,22.87
+L8_16,fold3,2019-20,8,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,165,18.15,,
+L8_16,fold3,2019-20,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,168,61.11,55.71,65.76
+L8_16,fold3,2019-20,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,165,61.14,,
+L8_16,fold4,2022-23,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,217,44.19,39.56,47.75
+L8_16,fold4,2022-23,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,70,61.93,56.7,66.76
+L8_16,fold4,2022-23,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,147,38.58,32.52,43.31
+L8_16,fold4,2022-23,8,reg ORACLE vs reg as-of,"delay cost, regional",all,217,41.0,34.33,46.5
+L8_16,fold4,2022-23,8,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,70,38.58,,
+L8_16,fold4,2022-23,8,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,147,41.74,,
+L8_16,fold4,2022-23,8,reg as-of vs nat as-of,"regional information, deployable",all,217,-1.77,-5.2,1.4
+L8_16,fold4,2022-23,8,reg as-of vs nat as-of,"regional information, deployable",pre-peak,70,0.0,,
+L8_16,fold4,2022-23,8,reg as-of vs nat as-of,"regional information, deployable",peak or after,147,-2.33,,
+L8_16,fold4,2022-23,8,reg ORACLE vs nat ORACLE,"regional information, oracle",all,217,-7.6,-17.99,2.66
+L8_16,fold4,2022-23,8,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,70,-61.33,,
+L8_16,fold4,2022-23,8,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,147,2.95,,
+L8_16,fold4,2022-23,8,nat as-of vs train-majority,deployable genomics vs trivial rule,all,217,13.97,9.62,17.58
+L8_16,fold4,2022-23,8,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,70,0.0,,
+L8_16,fold4,2022-23,8,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,147,17.62,,
+L8_16,fold4,2022-23,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,217,51.99,46.79,55.87
+L8_16,fold4,2022-23,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,70,61.93,,
+L8_16,fold4,2022-23,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,147,49.4,,
+L8_16,fold5,2023-24,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",all,250,61.73,55.82,68.32
+L8_16,fold5,2023-24,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",pre-peak,120,66.99,58.19,75.35
+L8_16,fold5,2023-24,8,nat ORACLE vs nat as-of,"DELAY COST, national (PRIMARY)",peak or after,130,55.42,50.24,61.07
+L8_16,fold5,2023-24,8,reg ORACLE vs reg as-of,"delay cost, regional",all,250,59.53,53.72,65.72
+L8_16,fold5,2023-24,8,reg ORACLE vs reg as-of,"delay cost, regional",pre-peak,120,65.39,,
+L8_16,fold5,2023-24,8,reg ORACLE vs reg as-of,"delay cost, regional",peak or after,130,51.16,,
+L8_16,fold5,2023-24,8,reg as-of vs nat as-of,"regional information, deployable",all,250,-3.24,-9.06,1.04
+L8_16,fold5,2023-24,8,reg as-of vs nat as-of,"regional information, deployable",pre-peak,120,-11.2,,
+L8_16,fold5,2023-24,8,reg as-of vs nat as-of,"regional information, deployable",peak or after,130,6.34,,
+L8_16,fold5,2023-24,8,reg ORACLE vs nat ORACLE,"regional information, oracle",all,250,-9.19,-27.67,5.43
+L8_16,fold5,2023-24,8,reg ORACLE vs nat ORACLE,"regional information, oracle",pre-peak,120,-16.58,,
+L8_16,fold5,2023-24,8,reg ORACLE vs nat ORACLE,"regional information, oracle",peak or after,130,-2.61,,
+L8_16,fold5,2023-24,8,nat as-of vs train-majority,deployable genomics vs trivial rule,all,250,8.14,-1.12,16.7
+L8_16,fold5,2023-24,8,nat as-of vs train-majority,deployable genomics vs trivial rule,pre-peak,120,10.24,,
+L8_16,fold5,2023-24,8,nat as-of vs train-majority,deployable genomics vs trivial rule,peak or after,130,5.48,,
+L8_16,fold5,2023-24,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,all,250,64.85,55.75,73.26
+L8_16,fold5,2023-24,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,pre-peak,120,70.37,,
+L8_16,fold5,2023-24,8,nat ORACLE vs train-majority,oracle genomics vs trivial rule,peak or after,130,57.86,,
