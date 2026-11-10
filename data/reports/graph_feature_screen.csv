@@ -1,0 +1,121 @@
+horizon,fold,test_season,arm,mae
+1,fold1,2017-18,B2 own history only,0.6741903869825355
+1,fold1,2017-18,+ 3 most-correlated neighbours,0.7058393309923574
+1,fold1,2017-18,+ 3 RANDOM neighbours (control),0.6923658795080303
+1,fold1,2017-18,+ all other regions (mean),0.7177582008599594
+1,fold2,2018-19,B2 own history only,0.49102051913040246
+1,fold2,2018-19,+ 3 most-correlated neighbours,0.500285254157131
+1,fold2,2018-19,+ 3 RANDOM neighbours (control),0.5082285340801446
+1,fold2,2018-19,+ all other regions (mean),0.5109283929376016
+1,fold3,2019-20,B2 own history only,0.7635820433932488
+1,fold3,2019-20,+ 3 most-correlated neighbours,0.7661095452388511
+1,fold3,2019-20,+ 3 RANDOM neighbours (control),0.7821632781327021
+1,fold3,2019-20,+ all other regions (mean),0.7855450216815353
+1,fold4,2022-23,B2 own history only,1.0126847320957701
+1,fold4,2022-23,+ 3 most-correlated neighbours,1.0564586733515189
+1,fold4,2022-23,+ 3 RANDOM neighbours (control),0.880152191446499
+1,fold4,2022-23,+ all other regions (mean),0.9058330647026509
+1,fold5,2023-24,B2 own history only,0.49657293390524576
+1,fold5,2023-24,+ 3 most-correlated neighbours,0.5393435771477961
+1,fold5,2023-24,+ 3 RANDOM neighbours (control),0.485136092990643
+1,fold5,2023-24,+ all other regions (mean),0.5257776769739159
+2,fold1,2017-18,B2 own history only,0.7433010700556182
+2,fold1,2017-18,+ 3 most-correlated neighbours,0.7858011142269811
+2,fold1,2017-18,+ 3 RANDOM neighbours (control),0.7719392404054085
+2,fold1,2017-18,+ all other regions (mean),0.7715679191526063
+2,fold2,2018-19,B2 own history only,0.6310347372977125
+2,fold2,2018-19,+ 3 most-correlated neighbours,0.6771730575732733
+2,fold2,2018-19,+ 3 RANDOM neighbours (control),0.6353824611776363
+2,fold2,2018-19,+ all other regions (mean),0.6996070075527577
+2,fold3,2019-20,B2 own history only,0.8983006327989024
+2,fold3,2019-20,+ 3 most-correlated neighbours,0.9119186428229257
+2,fold3,2019-20,+ 3 RANDOM neighbours (control),0.9683013764036578
+2,fold3,2019-20,+ all other regions (mean),0.9270624094304495
+2,fold4,2022-23,B2 own history only,1.5428793646143635
+2,fold4,2022-23,+ 3 most-correlated neighbours,1.5861461921845126
+2,fold4,2022-23,+ 3 RANDOM neighbours (control),1.4749574873917324
+2,fold4,2022-23,+ all other regions (mean),1.290448815864068
+2,fold5,2023-24,B2 own history only,0.6497592837230967
+2,fold5,2023-24,+ 3 most-correlated neighbours,0.7247558170155485
+2,fold5,2023-24,+ 3 RANDOM neighbours (control),0.6709936118080805
+2,fold5,2023-24,+ all other regions (mean),0.7101007348601343
+3,fold1,2017-18,B2 own history only,0.8232258904176706
+3,fold1,2017-18,+ 3 most-correlated neighbours,0.8429125869933731
+3,fold1,2017-18,+ 3 RANDOM neighbours (control),0.8919134114853424
+3,fold1,2017-18,+ all other regions (mean),0.8388175968273802
+3,fold2,2018-19,B2 own history only,0.7266410223477716
+3,fold2,2018-19,+ 3 most-correlated neighbours,0.8004107435349116
+3,fold2,2018-19,+ 3 RANDOM neighbours (control),0.7348490601995478
+3,fold2,2018-19,+ all other regions (mean),0.8551470241577772
+3,fold3,2019-20,B2 own history only,0.9749124510901152
+3,fold3,2019-20,+ 3 most-correlated neighbours,0.9999034874477525
+3,fold3,2019-20,+ 3 RANDOM neighbours (control),1.00865674344498
+3,fold3,2019-20,+ all other regions (mean),1.0040460713979815
+3,fold4,2022-23,B2 own history only,2.0605417480496757
+3,fold4,2022-23,+ 3 most-correlated neighbours,1.9576147338157368
+3,fold4,2022-23,+ 3 RANDOM neighbours (control),1.8578002117783057
+3,fold4,2022-23,+ all other regions (mean),1.6480760039802507
+3,fold5,2023-24,B2 own history only,0.7170692993240186
+3,fold5,2023-24,+ 3 most-correlated neighbours,0.8715026627419095
+3,fold5,2023-24,+ 3 RANDOM neighbours (control),0.6876696058156493
+3,fold5,2023-24,+ all other regions (mean),0.8150717272243543
+4,fold1,2017-18,B2 own history only,0.8913287356707604
+4,fold1,2017-18,+ 3 most-correlated neighbours,0.9299667370205149
+4,fold1,2017-18,+ 3 RANDOM neighbours (control),0.8666271176415157
+4,fold1,2017-18,+ all other regions (mean),0.9002975379001805
+4,fold2,2018-19,B2 own history only,0.8050973935496814
+4,fold2,2018-19,+ 3 most-correlated neighbours,0.8896366547313256
+4,fold2,2018-19,+ 3 RANDOM neighbours (control),0.8696033686165479
+4,fold2,2018-19,+ all other regions (mean),0.9306375240600254
+4,fold3,2019-20,B2 own history only,1.0011788034925961
+4,fold3,2019-20,+ 3 most-correlated neighbours,1.0571184245413445
+4,fold3,2019-20,+ 3 RANDOM neighbours (control),1.038156964727845
+4,fold3,2019-20,+ all other regions (mean),1.024338040146161
+4,fold4,2022-23,B2 own history only,2.3808786376350968
+4,fold4,2022-23,+ 3 most-correlated neighbours,2.21678130644221
+4,fold4,2022-23,+ 3 RANDOM neighbours (control),2.2342362102280706
+4,fold4,2022-23,+ all other regions (mean),2.0092349653611876
+4,fold5,2023-24,B2 own history only,0.7741685218839981
+4,fold5,2023-24,+ 3 most-correlated neighbours,0.9707815398377855
+4,fold5,2023-24,+ 3 RANDOM neighbours (control),0.8206729123176335
+4,fold5,2023-24,+ all other regions (mean),0.8978390325987311
+6,fold1,2017-18,B2 own history only,1.0359834085271213
+6,fold1,2017-18,+ 3 most-correlated neighbours,1.1980201486886668
+6,fold1,2017-18,+ 3 RANDOM neighbours (control),1.0781556822327898
+6,fold1,2017-18,+ all other regions (mean),1.108322620861106
+6,fold2,2018-19,B2 own history only,0.9104811483521608
+6,fold2,2018-19,+ 3 most-correlated neighbours,1.123971039785874
+6,fold2,2018-19,+ 3 RANDOM neighbours (control),1.1073673313736978
+6,fold2,2018-19,+ all other regions (mean),1.1827011540875276
+6,fold3,2019-20,B2 own history only,1.11070321614449
+6,fold3,2019-20,+ 3 most-correlated neighbours,1.1419481367353572
+6,fold3,2019-20,+ 3 RANDOM neighbours (control),1.133650887673497
+6,fold3,2019-20,+ all other regions (mean),1.1645843009010617
+6,fold4,2022-23,B2 own history only,2.96207222819945
+6,fold4,2022-23,+ 3 most-correlated neighbours,2.83232797113147
+6,fold4,2022-23,+ 3 RANDOM neighbours (control),2.7297797846551894
+6,fold4,2022-23,+ all other regions (mean),2.753301008009536
+6,fold5,2023-24,B2 own history only,0.8252713800420473
+6,fold5,2023-24,+ 3 most-correlated neighbours,0.9583370921820478
+6,fold5,2023-24,+ 3 RANDOM neighbours (control),0.9675848234111493
+6,fold5,2023-24,+ all other regions (mean),0.9468705976792705
+8,fold1,2017-18,B2 own history only,1.1750071557297406
+8,fold1,2017-18,+ 3 most-correlated neighbours,1.255304999683335
+8,fold1,2017-18,+ 3 RANDOM neighbours (control),1.1806969125788038
+8,fold1,2017-18,+ all other regions (mean),1.2464450214173257
+8,fold2,2018-19,B2 own history only,1.084645413356039
+8,fold2,2018-19,+ 3 most-correlated neighbours,1.2374568894000664
+8,fold2,2018-19,+ 3 RANDOM neighbours (control),1.0385665757598592
+8,fold2,2018-19,+ all other regions (mean),1.3219857715547059
+8,fold3,2019-20,B2 own history only,1.2075265762827434
+8,fold3,2019-20,+ 3 most-correlated neighbours,1.2285128457260326
+8,fold3,2019-20,+ 3 RANDOM neighbours (control),1.1962449606730174
+8,fold3,2019-20,+ all other regions (mean),1.3503462816533378
+8,fold4,2022-23,B2 own history only,2.87720175123414
+8,fold4,2022-23,+ 3 most-correlated neighbours,2.66548688038224
+8,fold4,2022-23,+ 3 RANDOM neighbours (control),2.9298947387324117
+8,fold4,2022-23,+ all other regions (mean),2.8083064458390816
+8,fold5,2023-24,B2 own history only,0.8683555268270392
+8,fold5,2023-24,+ 3 most-correlated neighbours,0.9156700663724162
+8,fold5,2023-24,+ 3 RANDOM neighbours (control),0.8201209297794119
+8,fold5,2023-24,+ all other regions (mean),0.8598770874401607
