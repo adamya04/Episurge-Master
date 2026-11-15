@@ -612,8 +612,13 @@ def fig_headline(con, precovid):
     plotstyle.zero_line(ax, "case history alone (A0)", x=HORIZONS[0])
     ax.set_xlabel("Forecast horizon (weeks)")
     ax.set_ylabel("MAE improvement over case history (%)")
-    ax.set_title("Before the peak, genomic signal exists only under\n"
-                 "collection-dating, which no forecaster has")
+    # The original title read "genomic signal exists only under
+    # collection-dating, which no forecaster has". It was written before the
+    # result came in and the figure contradicts it: BOTH curves sit below
+    # zero, so neither dating scheme beats case history. Oracle dating does
+    # not rescue genomics here, it merely fails less tidily.
+    ax.set_title("Oracle dating is BELOW case history at every horizon;\n"
+                 "deployable genomics is indistinguishable from it")
     ax.set_xticks(HORIZONS)
     ax.legend()
     plotstyle.finish(ax)
