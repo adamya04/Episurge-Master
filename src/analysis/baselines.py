@@ -21,14 +21,25 @@ Models
                          ili_asof_lag1. Not the final revised value - a
                          forecaster at T does not have it.
     B1  climatological   mean wILI for this (region, MMWR week) across
-                         strictly prior seasons in the training set. With
-                         three seasons this rests on one or two observations
-                         per cell; n_seasons is reported with every result.
+                         strictly prior seasons in the training set. Fold 1
+                         rests on a single observation per cell and later
+                         folds on up to five; n_seasons is reported with
+                         every result, and anything that depends on a
+                         per-cell standard deviation is not computable at
+                         fold 1 and must not be built on this baseline.
     B2  gradient boosting  on as-of lags 1-8 + region + position in season.
 
-Splits - rolling origin, two folds (DECISIONS.md 2026-10-29):
-    fold 1   train 2019-20              -> test 2022-23
-    fold 2   train 2019-20 + 2022-23    -> test 2023-24
+Splits - rolling origin, five expanding folds over the six retained
+seasons (FOLDS is derived from SEASON_LABELS, so it follows the season
+list rather than being written out here):
+    fold 1   train 2016-17                       -> test 2017-18
+    fold 2   train 2016-17 .. 2017-18            -> test 2018-19
+    fold 3   train 2016-17 .. 2018-19            -> test 2019-20
+    fold 4   train 2016-17 .. 2019-20            -> test 2022-23
+    fold 5   train 2016-17 .. 2022-23            -> test 2023-24
+Fold 4 crosses the COVID gap and reverses sign in several experiments; it
+is a regime-change finding, not noise, and later experiments report the
+four pre-COVID folds separately for that reason.
 This replaces Master Plan 3.4, whose single calibration block sat in the
 early-season zero-genomic-coverage region while test sat in the late-season
 full-coverage region.

@@ -125,7 +125,7 @@ src/config.py                  single source of truth for seasons and windows
 src/ingestion/                 one fetcher per external source
 src/preprocessing/             QC, mapping, climate aggregation, the join, validation
 src/features/                  composition and surveillance feature builders
-src/analysis/                  experiments (E1, E2) and diagnostics
+src/analysis/                  experiments (E1-E8) and diagnostics
 src/tools/                     pipeline driver and development scripts
 data/raw/                      immutable source snapshots (gitignored)
 data/processed/                QC'd, mapped and joined data
@@ -139,6 +139,35 @@ figures/                       generated figures
 **All season and window configuration lives in `src/config.py`.** Nothing else
 defines it. Adding or removing a season is one edit there, followed by a
 re-run from `qc_filter.py`.
+
+### What a fresh clone can and cannot run
+
+`data/raw/` is gitignored, so a clone has no source snapshots. The
+consequence is bounded, and worth stating precisely rather than leaving a
+reader to discover it:
+
+**Every published result is reproducible from the clone.** Seven of the
+eight analysis stages — E1, E2, E3a, E3b, E3c, E6 and E8 — depend only on
+tracked files, because the joined master table and all four feature tables
+are committed. The eighth, `build_genomic_features`, is blocked and skips;
+its output `data/features/genomic_derived.csv` is tracked, so nothing
+downstream of it is affected:
+
+```
+python src/tools/run_pipeline.py --only analysis
+```
+
+**The ingestion and raw-preprocessing chain cannot run** without first
+re-fetching the sources: `fetch_fluview_vintages`, `qc_filter`,
+`unzip_era5`, `era5_to_region_week`, `build_asof_ili` and
+`build_genomic_features` all read `data/raw/`. `run_pipeline.py --list`
+reports these as `blocked` rather than letting them fail mid-run, and a
+blocked stage is skipped with its reason. Re-creating them needs
+`--include-ingestion`, Entrez and CDS credentials, and several hours.
+
+The practical reading: results are verifiable, the raw data pull is not
+replayable from the repository alone. Re-deriving `data/raw` from the
+documented sources is possible but is a fetch, not a checkout.
 
 ---
 

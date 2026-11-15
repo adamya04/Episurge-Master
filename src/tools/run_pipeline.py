@@ -86,9 +86,16 @@ STAGES = [
     # dependency order, but the master table tolerates its absence (the
     # GF2-GF5 columns are optional on load), so it is listed here rather
     # than reordering a stage sequence that is already verified.
+    # The census file is listed because build_genomic_features sys.exits
+    # without it (load_population). data/raw is gitignored, so on a fresh
+    # clone this stage must report blocked and skip - its output is
+    # tracked, so every downstream analysis stage still runs. Omitting it
+    # made the stage report "ready" and then fail, which is the quiet
+    # failure this driver exists to prevent.
     ("build_genomic_features", "src/features/build_genomic_features.py", "analysis",
      ["data/features/composition_oracle.csv",
-      "data/features/asof_composition_L8-16.csv"],
+      "data/features/asof_composition_L8-16.csv",
+      "data/raw/census/hhs_region_population.csv"],
      ["data/features/genomic_derived.csv"]),
     ("E3a_genomic_ablation", "src/analysis/genomic_ablation.py", "analysis",
      ["data/processed/master_region_week.csv"],
