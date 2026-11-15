@@ -366,6 +366,46 @@ def layer_c(core, regions, n_seeds):
                 for s in rng.choice([x for x in regions if x != r],
                                     NEIGHBOURS_K, replace=False):
                     A[ridx[r], ridx[s]] = 1
+        elif kind == "climate":
+            # EXOGENOUS relation: regions whose CLIMATOLOGY is most alike.
+            # Correlation graphs fail because WHICH regions pair changes
+            # every season (Layer A). Climatology is a property of place,
+            # not of an epidemic, so this graph is time-invariant by
+            # construction and therefore transfers trivially. Profiles are
+            # built from TRAINING weeks only, and each variable is
+            # z-scored over the whole training panel so neither dominates
+            # the distance. Euclidean distance, not correlation: every
+            # region's climatology is the same seasonal sinusoid, so
+            # correlation is ~1 for every pair and discriminates nothing,
+            # whereas distance separates warm regions from cold ones.
+            prof = (train.groupby(["hhs_region", "season_week_idx"])
+                    [["temp_c", "abs_humidity"]].mean().reset_index())
+            for v in ("temp_c", "abs_humidity"):
+                prof[v] = (prof[v] - prof[v].mean()) / (prof[v].std() + 1e-9)
+            piv = prof.pivot_table(index="hhs_region",
+                                   columns="season_week_idx",
+                                   values=["temp_c", "abs_humidity"])
+            piv = piv.reindex(regions).dropna(axis=1)
+            V = piv.values.astype(np.float64)
+            dist = np.sqrt(((V[:, None, :] - V[None, :, :]) ** 2).sum(-1))
+            np.fill_diagonal(dist, np.inf)
+            for i in range(R):
+                for j in np.argsort(dist[i])[:NEIGHBOURS_K]:
+                    A[i, j] = 1
+        elif kind == "mass":
+            # EXOGENOUS relation: every region attends to the k most
+            # POPULOUS other regions - a distance-free gravity model,
+            # testing the hierarchical-spread hypothesis that influenza
+            # information flows from the largest population centres. Named
+            # "mass" rather than "gravity" because the raw geography needed
+            # for population-weighted centroids is not in the repository,
+            # so no distance term is included and none is implied.
+            pop = (train.groupby("hhs_region")["population"].first()
+                   .reindex(regions))
+            order = list(pop.sort_values(ascending=False).index)
+            for r in regions:
+                for s in [x for x in order if x != r][:NEIGHBOURS_K]:
+                    A[ridx[r], ridx[s]] = 1
         deg = A.sum(1, keepdims=True)
         deg[deg == 0] = 1
         return torch.tensor(A / deg)
@@ -455,7 +495,7 @@ def layer_c(core, regions, n_seeds):
         if train.empty:
             train, val = train_all, train_all
 
-        for kind in ["none", "corr", "full", "random"]:
+        for kind in ["none", "corr", "full", "random", "climate", "mass"]:
             for seed in range(n_seeds):
                 e = fit_eval(kind, seed, train, val, test)
                 for j, h in enumerate(H):
@@ -516,6 +556,16 @@ def layer_c(core, regions, n_seeds):
          **skill("random", "none")},
         {"comparison": "GNN correlation vs RANDOM  [G5 control]",
          **skill("corr", "random")},
+        {"comparison": "GNN climate vs no-graph",
+         **skill("climate", "none")},
+        {"comparison": "GNN mass vs no-graph",
+         **skill("mass", "none")},
+        {"comparison": "GNN climate vs RANDOM  [G5 control, EXOGENOUS]",
+         **skill("climate", "random")},
+        {"comparison": "GNN mass vs RANDOM     [G5 control, EXOGENOUS]",
+         **skill("mass", "random")},
+        {"comparison": "GNN climate vs correlation",
+         **skill("climate", "corr")},
     ]).to_string(index=False))
 
     print("\n  READING: the model learns - it beats persistence substantially")
