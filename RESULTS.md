@@ -307,3 +307,115 @@ other.
 **No model helps.** Gradient boosting does not beat carry-forward (FLIP or
 negative at every horizon). Dominance forecasting is an information-
 availability problem, not a modelling problem.
+---
+
+## E3c — Delay-policy surface: what would recover the lost signal
+**Run:** 2026-11-10 · `src/analysis/delay_policy_surface.py` · 5 windows × 5 submission speed-ups × 6 horizons × 5 folds
+**Source artifacts:** `data/reports/policy_surface.csv`, `policy_surface_signs.csv`
+**Target:** same as E3b — `oracle_prop_h3n2(t+h)`
+
+Counterfactual, not a model change. The window `Lx-y` is which lag weeks of
+sequence data the feature may use; `shift_days` is how many days earlier
+every sequence is assumed to be published. The current operating point is
+`L8-16, shift 0`. All cells are sign-consistent skill against it across the
+four pre-COVID folds; FLIP means the sign is not stable.
+
+| lever | setting | h1 | h2 | h3 | h4 | h6 | h8 |
+|---|---|---|---|---|---|---|---|
+| faster submission ALONE | L8-16, +84 d | +6.5 | +5.9 | +5.8 | +5.7 | +5.1 | +4.6 |
+| tighter window ALONE | L0-4, +0 d | **−39.9** | **−37.9** | **−32.0** | **−29.2** | **−21.3** | FLIP |
+| both, modest | L4-12, +14 d | +9.3 | +8.9 | +9.6 | +9.7 | **+10.5** | +9.1 |
+| both, moderate | L4-12, +28 d | +16.5 | +15.7 | +16.3 | +16.5 | **+17.1** | +16.1 |
+| both, strong | L0-4, +56 d | FLIP | +33.3 | +33.6 | +33.5 | +34.0 | +34.1 |
+| both, maximal | L0-4, +84 d | +34.7 | +35.9 | +36.5 | +36.8 | +37.7 | +38.2 |
+
+**A tighter window alone is actively harmful** — −29 to −45 %. Narrowing the
+lag window without speeding up publication empties it: the sequences that
+would fill `L0-4` have not been deposited yet at the origin. This is the
+result that makes the surface worth reporting rather than a monotone
+sensitivity sweep, and it is the direct forecasting consequence of E1's
+coverage accounting.
+
+**Faster submission alone is small but real** — +4.6 to +6.5 %,
+sign-consistent at every horizon and at every speed-up tested (+2.5 % at
+14 days rising to +6.5 % at 84). The two levers are complements: either one
+alone recovers little or hurts, together they recover a third of the gap.
+
+**The deployable recommendation is the modest cell.** `L4-12` with a
+14-day submission speed-up gives **+9.1 to +10.5 %, sign-consistent at every
+horizon**, and both halves are operationally plausible — a two-week
+reduction in deposit latency and a window four weeks tighter than current.
+The +34 to +38 % cells require an 8–12 week speed-up, which is a surveillance
+redesign, not an operating change.
+
+**Framing.** E3b established that staleness costs 43.5–49.8 %. E3c prices
+the remedies against that gap, and the honest answer is that no realistic
+single change closes it.
+
+---
+
+## E6 — Which graph relation carries information
+**Run:** 2026-11-13 (corr/full/random), 2026-11-15 (climate/mass) ·
+`src/analysis/graph_relation_ablation.py` · 6 arms × 5 folds × 3 seeds × 6 horizons
+**Source artifacts:** `data/reports/graph_{stability,feature_screen,gnn_ablation}.csv`
+
+**Result: null, and the null has a mechanism.**
+
+**Layer A — the graph is not stable.** Region-to-region wILI correlation
+matrices barely persist between seasons: matrix-to-matrix r = −0.14 to +0.36,
+mean +0.10 over 15 season pairs. Top-k neighbours selected on training
+seasons are the test season's true top neighbours 34.7 % of the time against
+a 33.3 % chance rate. **A correlation graph fitted on history is, for the
+next season, statistically indistinguishable from a random graph.** Layers B
+and C then behave exactly as that predicts, which is why the null is a
+finding rather than a failed experiment.
+
+**Layer C — GNN relation ablation.** Mean MAE, pre-COVID folds:
+
+| arm | h1 | h2 | h3 | h4 | h6 | h8 |
+|---|---|---|---|---|---|---|
+| B0 persistence | 0.7640 | 1.0503 | 1.3070 | 1.5536 | 2.0183 | 2.4146 |
+| B2 boosting | **0.6063** | **0.7306** | **0.8104** | **0.8680** | **0.9706** | 1.0839 |
+| GNN, no graph | 0.7067 | 0.8606 | 0.9683 | 1.0215 | 1.1258 | **1.1874** |
+| GNN, correlation | 0.6998 | 0.8793 | 0.9729 | 1.0533 | 1.1921 | 1.2912 |
+| GNN, fully connected | 0.7172 | 0.8821 | 0.9880 | 1.0713 | 1.1943 | 1.2912 |
+| GNN, random (G5 control) | 0.6988 | 0.8654 | 0.9753 | 1.0372 | 1.1665 | 1.2441 |
+| GNN, climate similarity | 0.6756 | 0.8563 | 0.9903 | 1.0297 | 1.1619 | 1.2508 |
+| GNN, population mass | 0.6817 | 0.8437 | 0.9422 | 1.0097 | 1.1286 | 1.2188 |
+
+**The instrument works.** GNN no-graph beats persistence by **+18.4 % (h2) to
++49.8 % (h8), 4/4 folds at every horizon h2–h8**. The relation ablation is
+therefore run on a model that demonstrably learns, which is what makes a null
+on the relations interpretable.
+
+**No relation beats no-graph.** Every graph contrast against no-graph FLIPs
+at all six horizons, and the point estimates are mostly negative
+(correlation −0.1 to −6.3 %, fully connected −1.3 to −6.0 %). At h=6 and h=8
+no-graph is the best GNN arm outright.
+
+**The G5 control, as mandated by Master Plan §4.3.** Correlation vs
+density-matched random FLIPs at all six horizons. Adding the relation a
+reviewer would expect to help is indistinguishable from adding a random
+relation of the same density.
+
+**Exogenous relations do not rescue it.** Climate-similarity and
+population-mass graphs were added to test whether the failure is *instability*
+(a graph re-fitted each season) rather than *graphs in general* — both are
+fixed, season-invariant, and known in advance, so neither can be unstable.
+Their mean MAE is the best of any graph arm at h=1 (climate 0.6756, mass
+0.6817, against random 0.6988 and correlation 0.6998), and both are mean-
+positive against the random control at nearly every horizon (climate −0.9 to
++3.4 %, mass +1.7 to +2.8 %). **But every contrast FLIPs across folds**, so
+none of it is resolvable at this sample size.
+
+**Reading.** Graph stability is necessary but not sufficient. Removing
+instability moves the point estimates in the right direction and removes none
+of the uncertainty — with ten nodes and ~1,650 training rows, between-fold
+variance swamps a 2–3 % effect. This closes the §4.3 gap and bounds the claim:
+the null is about this data scale, not about graph methods.
+
+**Stated limitation.** The GNN does not beat gradient boosting: −15.7 % at
+h=1 (0/4 folds, sign-consistent), and worse on the mean at every other
+horizon (−9.5 % to −18.3 %) though FLIP beyond h=1. With ten nodes this is
+expected. The contribution is the relation ablation and its mechanism, not
+the model's accuracy.
