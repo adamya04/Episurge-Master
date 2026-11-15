@@ -81,6 +81,31 @@ STAGES = [
     ("E2_baselines", "src/analysis/baselines.py", "analysis",
      ["data/processed/master_region_week.csv"],
      ["data/reports/baseline_results.csv"]),
+
+    # Phase 3. build_genomic_features belongs before build_master_table in
+    # dependency order, but the master table tolerates its absence (the
+    # GF2-GF5 columns are optional on load), so it is listed here rather
+    # than reordering a stage sequence that is already verified.
+    ("build_genomic_features", "src/features/build_genomic_features.py", "analysis",
+     ["data/features/composition_oracle.csv",
+      "data/features/asof_composition_L8-16.csv"],
+     ["data/features/genomic_derived.csv"]),
+    ("E3a_genomic_ablation", "src/analysis/genomic_ablation.py", "analysis",
+     ["data/processed/master_region_week.csv"],
+     ["data/reports/ablation_contrasts.csv"]),
+    ("E3b_dominance_forecast", "src/analysis/dominance_forecast.py", "analysis",
+     ["data/processed/master_region_week.csv",
+      "data/features/composition_oracle.csv"],
+     ["data/reports/dominance_results.csv"]),
+    ("E3c_delay_policy_surface", "src/analysis/delay_policy_surface.py", "analysis",
+     ["data/processed/master_region_week.csv"],
+     ["data/reports/policy_surface.csv"]),
+    ("E6_graph_relation_ablation", "src/analysis/graph_relation_ablation.py", "analysis",
+     ["data/processed/master_region_week.csv"],
+     ["data/reports/graph_stability.csv"]),
+    ("E8_detectability_frontier", "src/analysis/detectability_frontier.py", "analysis",
+     ["data/processed/master_region_week.csv"],
+     ["data/reports/detectability_frontier.csv"]),
 ]
 
 GROUPS = ["ingestion", "preprocessing", "features", "join", "analysis"]
