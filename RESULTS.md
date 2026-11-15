@@ -258,6 +258,26 @@ signal for incidence forecasting — oracle or as-of. This bounds the claim:
 it is about H3N2-vs-H1N1 composition, not about genomics in general. Clade
 or antigenic features are untestable here because only metadata was stored.
 
+**This conclusion is power-bounded, and the bound is measured, not assumed.**
+As written above, "no recoverable signal" is an absence of evidence. Two
+later experiments convert it into a quantity:
+
+- **E8** sweeps a synthetic predictor of known strength through this exact
+  design and finds it resolves nothing below **α ≈ 0.58–0.64, i.e. 33–41 %
+  of wILI variance** — and **pre-peak, at real coverage, nothing at any
+  strength tested up to α = 0.7**. The 5.5–10.8 % floor quoted above is the
+  same fact in units of MAE; E8 restates it in units a genomic predictor
+  can be judged against.
+- **E4/E5** then apply a model-free test that resolves coupling at
+  **α = 0.10 (1.0 % of variance)** — thirty-fold finer in variance — and
+  also find nothing that survives multiple-testing correction.
+
+The defensible form of E3a's claim is therefore: *no composition signal
+exists at subtype resolution above roughly 1 % of target variance, and the
+forecasting design used here could not have seen one below ~40 % in any
+case.* Stated without that bound, the null is weaker than the evidence
+supports.
+
 **Note on the COVID fold.** Fold 4 reverses sign (A4−A0 is +7.1 to +12.6 %).
 One fold, opposite regime, no claim either way — recorded so it is not
 mistaken for a finding later.
@@ -419,3 +439,162 @@ h=1 (0/4 folds, sign-consistent), and worse on the mean at every other
 horizon (−9.5 % to −18.3 %) though FLIP beyond h=1. With ten nodes this is
 expected. The contribution is the relation ablation and its mechanism, not
 the model's accuracy.
+
+---
+
+## E8 — Detectability frontier: what this design could have seen
+**Run:** 2026-11-15 · `src/analysis/detectability_frontier.py` · 5 α × 3 φ × 2 horizons × 8 replicates, per stratum
+**Source artifacts:** `data/reports/detectability_{frontier,frontier_prepeak,null}.csv`
+
+A null is worth exactly as much as the power behind it. E3a reported an
+analytic floor in percent of MAE, which does not tell a reader how strong a
+*genomic predictor* would have had to be. E8 answers that directly.
+
+**Design.** Inject a synthetic predictor of known strength α — its
+correlation with the standardised target, so α² is the share of target
+variance it carries — give it the **real** as-of missingness pattern, then
+sweep an availability knob φ that reveals a fraction of the missing cells.
+Score each cell by E3a's own rule: sign-consistent improvement across folds
+against E3a's 5.5 % floor.
+
+**The rule is calibrated, not assumed.** An α = 0 arm over **48 cells
+produced 0 false positives**. Sign-consistency across four folds would fire
+6.25 % of the time on coin flips; an uninformative column costs the booster
+a little, so the rule runs conservative. Every number below is a floor.
+
+**Pooled over the season:**
+
+| horizon | φ | MDE α | variance a predictor must carry |
+|---|---|---|---|
+| 1 | 0.0 | 0.628 | 39.4 % |
+| 1 | 0.5 | 0.630 | 39.7 % |
+| 1 | 1.0 | 0.635 | 40.3 % |
+| 4 | 0.0 | 0.640 | 41.0 % |
+| 4 | 0.5 | 0.600 | 35.9 % |
+| 4 | 1.0 | 0.578 | 33.4 % |
+
+**Pre-peak origins — the decisive stratum:**
+
+| horizon | φ | MDE α | variance a predictor must carry |
+|---|---|---|---|
+| 1 | 0.0 (real, 34.8 % coverage) | **never reaches the floor** | — |
+| 1 | 0.5 | 0.696 | 48.4 % |
+| 1 | 1.0 | 0.641 | 41.1 % |
+| 4 | 0.0 (real) | **never reaches the floor** | — |
+| 4 | 0.5 | 0.665 | 44.2 % |
+| 4 | 1.0 | 0.615 | 37.8 % |
+
+Before the peak, under the coverage the surveillance system actually
+delivers, the design does not reach its own detectable floor at *any*
+injected strength tested — up to α = 0.7, a predictor explaining nearly half
+the variance of weekly wILI. The 34.8 % pre-peak coverage is measured here
+on the rows actually evaluated, independently of E1, and agrees exactly.
+
+**What this licenses, and what it does not.** It does **not** show that
+composition carries signal. It converts E3a's null from "we found nothing"
+into "nothing below roughly 40 % of wILI variance could have been found
+here, and pre-peak nothing at all could have been." Taken alone it is also a
+confession — a reviewer may fairly say the instrument was blunt. That is the
+objection E4/E5 exists to answer.
+
+**Replicates.** Raised from 3 to 8 after the 3-replicate detection table
+came out non-monotone in α (detection *falling* as injected signal *rose*,
+which is noise). The MDE is interpolated off the mean-**skill** curve, which
+is monotone, not off the detection flag. Both replicate counts give the same
+verdict; the 8-replicate curves are the reportable ones.
+
+---
+
+## E4 / E5 — Model-free information flow
+**Run:** 2026-11-15 · `src/analysis/information_flow.py` · 500 surrogates per arm, 300 per power cell
+**Source artifacts:** `data/reports/information_flow{,_power}.csv`
+
+E3a and E6 both fit models. If composition carried signal that gradient
+boosting and a GRU could not express, both would return nulls for a reason
+that has nothing to do with the data. E4 and E5 test for information flow
+without fitting a forecaster.
+
+**Design.** Panel Granger on first differences with region fixed effects and
+lags built strictly inside (region, season) so none reaches across the summer
+gap; transfer entropy in bits for the same question without a linearity
+assumption. Significance comes from a **circular-shift surrogate null**, not
+an analytic p-value: panel residuals are autocorrelated within a season and
+correlated across regions in the same week, so a textbook F-test would be
+anti-conservative and would manufacture significance.
+
+**Result: null.** Of twelve arms, **2 cross p = 0.05 uncorrected against 0.6
+expected by chance**, and **neither survives correction** — both land at
+BH q = 0.240, against a Bonferroni threshold of 0.0042.
+
+| test | dating | stratum | param | statistic | p | BH q |
+|---|---|---|---|---|---|---|
+| Granger | oracle | all | p=1 | F = 0.849 | 0.371 | 0.557 |
+| Granger | oracle | all | p=2 | F = 0.670 | 0.527 | 0.629 |
+| transfer entropy | oracle | all | bins=3 | +0.0011 bits | 0.279 | 0.486 |
+| Granger | oracle | pre-peak | p=1 | F = 2.461 | 0.184 | 0.486 |
+| Granger | oracle | pre-peak | p=2 | F = 1.890 | 0.283 | 0.486 |
+| transfer entropy | oracle | pre-peak | bins=3 | +0.0125 bits | **0.028** | 0.240 |
+| Granger | as-of | all | p=1 | F = 0.000 | 0.992 | 0.992 |
+| Granger | as-of | all | p=2 | F = 3.245 | **0.040** | 0.240 |
+| transfer entropy | as-of | all | bins=3 | -0.0011 bits | 0.577 | 0.629 |
+| Granger | as-of | pre-peak | p=1 | F = 0.362 | 0.541 | 0.629 |
+| Granger | as-of | pre-peak | p=2 | F = 1.932 | 0.164 | 0.486 |
+| transfer entropy | as-of | pre-peak | bins=3 | +0.0075 bits | 0.257 | 0.486 |
+
+The two small p-values are recorded rather than dropped. Neither is a
+finding, but the smaller sits in the arm where a signal would be *expected*
+if one existed — oracle dating, pre-peak. A future study with more seasons
+should look there first, and should expect to find nothing.
+
+**The positive control is what makes the null worth reporting.**
+
+| injected α | variance carried | Granger F (source-side) | p |
+|---|---|---|---|
+| 0.000 | 0.00 % | 0.867 | 0.336 |
+| 0.025 | 0.06 % | 0.015 | 0.904 |
+| 0.050 | 0.25 % | 0.472 | 0.472 |
+| 0.075 | 0.56 % | 2.249 | 0.159 |
+| **0.100** | **1.00 %** | 5.368 | **0.047** |
+| 0.150 | 2.25 % | 15.778 | 0.003 |
+| 0.200 | 4.00 % | 32.102 | 0.003 |
+| 0.300 | 9.00 % | 85.242 | 0.003 |
+
+At α = 0 the test returns p = 0.336: no false positive. It begins firing at
+α = 0.10 — a predictor carrying **1.0 % of target variance** — and F rises
+monotonically from there.
+
+**Two controls, and only one of them is comparable with E8.** A *target-side*
+control, which injects coupling into a synthetic AR(1) target, fires at
+α = 0.05. Quoting that against E8's MDE would be wrong: it measures
+sensitivity to coupling into *that* process, not into real wILI, which
+carries seasonal structure a forecaster already exploits, and it overstates
+the result roughly four-fold. The **source-side** control above exists so the
+comparison is legitimate — both it and E8 sweep the correlation of a
+synthetic predictor with the standardised real target, under this panel's
+real coverage.
+
+**The joint claim.** On that single scale:
+
+- the forecasting design (E8) resolves a predictor only above α ≈ 0.58–0.64,
+  i.e. **33–41 % of variance** — and pre-peak, not at any strength tested;
+- the panel Granger test (E4) resolves one at α = 0.10, i.e. **1.0 % of
+  variance** — roughly six-fold finer in α and thirty-fold in variance;
+- applied to the real data, **the sharper instrument also finds nothing**.
+
+E3a's null could have been a blunt-instrument artefact. E8 quantifies exactly
+how blunt. E4 then rules out the artefact by applying a far sharper
+instrument to the same panel and returning the same answer.
+
+**Scope, stated once and not softened.** This bounds H3N2-versus-H1N1
+composition, which after QC is effectively a two-category vector. It says
+nothing about clade-level or antigenic features, which are untestable on this
+dataset because only sequence metadata was retained. A null at subtype
+resolution is not a null for genomic surveillance.
+
+**Stated limitations.** The circular-shift surrogate wraps each series end
+onto start, injecting one artificial discontinuity per series; on the
+~12-week pre-peak subset that is a larger fraction of the series and the
+shift space is small, so the pre-peak p-values are the least robust here.
+The positive control measures power on rows where composition is *present* —
+the fair analogue, but not the power of a predictor obliged to produce a
+number on every row.

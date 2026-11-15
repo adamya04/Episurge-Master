@@ -27,6 +27,10 @@ for p in (_src, f"{_src}/analysis"):
     if p not in sys.path:
         sys.path.insert(0, p)
 from baselines import FOLDS, HORIZONS                     # noqa: E402
+# Imported rather than reimplemented: the MDE definition must not be able
+# to drift between the experiment and the document that reports it.
+from detectability_frontier import (mde_from_curve,       # noqa: E402
+                                    E3A_FLOOR_PCT)
 
 REPORTS = Path("data/reports")
 FIGURES = Path("figures")
@@ -239,9 +243,13 @@ def e3c_tables():
 def e6_tables():
     g = pd.read_csv(REPORTS / "graph_gnn_ablation.csv")
     gp = g[g.fold.isin(PRE)]
-    order = ["B0 persistence", "B2 boosting", "none", "corr", "full", "random"]
+    order = ["B0 persistence", "B2 boosting", "none", "corr", "full",
+             "random", "climate", "mass"]
+    order = [a for a in order if a in set(g.arm)]
     pretty = {"none": "GNN, no graph", "corr": "GNN, correlation graph",
-              "full": "GNN, fully connected", "random": "GNN, random graph"}
+              "full": "GNN, fully connected", "random": "GNN, random graph",
+              "climate": "GNN, climate similarity",
+              "mass": "GNN, population mass"}
     mae = gp.pivot_table(index="arm", columns="horizon",
                          values="mae").reindex(order)
     mae.index = [pretty.get(i, i) for i in mae.index]
@@ -261,6 +269,18 @@ def e6_tables():
         ["GNN random vs no-graph", ""] + sk("random", "none"),
         ["GNN correlation vs RANDOM", "the G5 control"] + sk("corr", "random"),
     ]
+    # The exogenous arms test whether the failure is graph INSTABILITY
+    # rather than graphs in general: both are season-invariant by
+    # construction, so neither can be unstable.
+    if "climate" in set(g.arm):
+        gnn_rows += [
+            ["GNN climate vs no-graph", "exogenous, cannot be unstable"]
+            + sk("climate", "none"),
+            ["GNN population-mass vs no-graph", ""] + sk("mass", "none"),
+            ["GNN climate vs RANDOM", "G5 control, exogenous"]
+            + sk("climate", "random"),
+            ["GNN population-mass vs RANDOM", ""] + sk("mass", "random"),
+        ]
 
     f = pd.read_csv(REPORTS / "graph_feature_screen.csv")
     fp = f[f.fold.isin(PRE)]
@@ -937,7 +957,245 @@ def build():
     ablation and its mechanism, not the model's accuracy.</div>
     """)
 
-    A("<h2 class='pb'>8. Consolidated comparison and progression</h2>")
+    # ── 8. power bound and model-free corroboration ──────────────────
+    A("<h2 class='pb'>8. E8 and E4/E5 &mdash; how much signal could this "
+      "design have seen?</h2>")
+    A("""
+    <p>Two of the six experiments above returned nulls, and a null is worth
+    exactly as much as the power behind it. &sect;4 reported E3a's analytic
+    detectable floor, but a floor expressed in percent of MAE does not tell
+    a reader how strong a <i>genomic predictor</i> would have had to be.
+    These two experiments answer that question from opposite directions:
+    E8 measures what the forecasting design could have resolved, and E4/E5
+    ask the same question with a far more sensitive instrument that fits no
+    forecaster at all.</p>""")
+
+    # ---- 8.1 E8 -----------------------------------------------------
+    A("<h3>8.1 E8 &mdash; the detectability frontier</h3>")
+    fr_p = REPORTS / "detectability_frontier.csv"
+    nl_p = REPORTS / "detectability_null.csv"
+    pp_p = REPORTS / "detectability_frontier_prepeak.csv"
+    if fr_p.exists():
+        fr = pd.read_csv(fr_p)
+        A(f"""
+        <p><b>Design.</b> A synthetic predictor of known strength
+        &alpha; is injected into the real panel, where &alpha; is its
+        correlation with the standardised target, so &alpha;&sup2; is the
+        share of target variance it carries. The injected column is given
+        the <i>real</i> as-of missingness pattern, and an availability
+        knob &phi; then reveals a fraction of the missing cells, so the
+        sweep separates "the signal is weak" from "the signal is absent
+        when it would matter". Each cell is scored by E3a's own rule:
+        sign-consistent improvement across folds, against E3a's analytic
+        floor of {E3A_FLOOR_PCT}%. Replicates: {int(fr['rep'].nunique())}.</p>""")
+
+        if nl_p.exists():
+            nul = pd.read_csv(nl_p)
+            nfp = int(nul["detected"].sum())
+            A(f"""
+            <div class='box'><b>The rule is calibrated, not assumed.</b>
+            An &alpha;&nbsp;=&nbsp;0 arm &mdash; pure noise injected in
+            place of the synthetic predictor &mdash; was run over
+            {len(nul)} cells and fired <b>{nfp} false positives</b>.
+            Sign-consistency across four folds would fire 6.25% of the
+            time on coin flips; an uninformative column costs the booster
+            a little, so the rule runs conservative rather than liberal.
+            Every detection reported below is therefore a floor, not an
+            artefact of a loose threshold.</div>""")
+
+        mde = mde_from_curve(fr, E3A_FLOOR_PCT)
+        A(raw_table(
+            [[str(int(r.horizon)), f"{r.phi:.1f}",
+              "never reaches the floor" if r.mde_alpha != r.mde_alpha
+              else f"{r.mde_alpha:.3f}",
+              "—" if r.mde_var_explained != r.mde_var_explained
+              else f"{r.mde_var_explained * 100:.1f}%"]
+             for r in mde.itertuples()],
+            ["horizon", "availability &phi;", "MDE &alpha;",
+             "variance a predictor must carry"],
+            "Table 8.1 &mdash; Minimum detectable effect, pooled over the "
+            "season. Read off the mean-skill curve, which is monotone in "
+            "&alpha;, rather than the per-replicate detection flag, which "
+            "is not."))
+
+    if pp_p.exists():
+        pp = pd.read_csv(pp_p)
+        mpp = mde_from_curve(pp, E3A_FLOOR_PCT)
+        A(raw_table(
+            [[str(int(r.horizon)), f"{r.phi:.1f}",
+              "never reaches the floor" if r.mde_alpha != r.mde_alpha
+              else f"{r.mde_alpha:.3f}",
+              "—" if r.mde_var_explained != r.mde_var_explained
+              else f"{r.mde_var_explained * 100:.1f}%"]
+             for r in mpp.itertuples()],
+            ["horizon", "availability &phi;", "MDE &alpha;",
+             "variance a predictor must carry"],
+            "Table 8.2 &mdash; The same sweep restricted to PRE-PEAK "
+            "origins, where E1 showed as-of coverage collapses to 34.8%. "
+            "This is the decisive stratum: it is where a genomic signal "
+            "would be operationally valuable, and where the design is "
+            "least able to see one."))
+        A("""
+        <p><b>The pre-peak result is the one that matters.</b> Before the
+        peak, under the coverage the surveillance system actually delivers,
+        the design does not reach its own detectable floor at <i>any</i>
+        injected strength tested &mdash; up to &alpha;&nbsp;=&nbsp;0.7,
+        a predictor explaining nearly half the variance of weekly wILI.
+        Granting full availability brings the floor back within reach but
+        still demands roughly 40% of target variance. No realistic
+        composition feature carries that.</p>
+
+        <p>The coverage figure printed by this experiment, 34.8% of pre-peak
+        region-weeks, is arrived at independently of E1 &mdash; E8 measures
+        it on the rows it actually evaluates &mdash; and agrees with E1
+        exactly.</p>""")
+    A(figure("fig_detectability_frontier.png",
+             "Figure 8.1 &mdash; The detectability frontier, pooled over the "
+             "season. Skill rises monotonically with injected strength and "
+             "crosses E3a's floor only beyond &alpha; &asymp; 0.6."))
+    A(figure("fig_detectability_frontier_prepeak.png",
+             "Figure 8.2 &mdash; The same sweep, pre-peak origins only."))
+
+    A("""
+    <div class='box warn'><b>What E8 does and does not license.</b> It does
+    <i>not</i> show that composition carries signal. It converts E3a's
+    null from "we found nothing" into "nothing below roughly 40% of wILI
+    variance could have been found here, and pre-peak nothing at all could
+    have been" &mdash; a bounded, falsifiable statement. Taken alone it is
+    also a confession: a reviewer may fairly say the instrument was blunt.
+    That is the objection &sect;8.2 exists to answer.</div>""")
+
+    # ---- 8.2 E4/E5 --------------------------------------------------
+    A("<h3>8.2 E4 and E5 &mdash; model-free information flow</h3>")
+    if_p = REPORTS / "information_flow.csv"
+    ip_p = REPORTS / "information_flow_power.csv"
+    if if_p.exists():
+        iflow = pd.read_csv(if_p)
+        A("""
+        <p><b>Design.</b> E3a and E6 both fit models. If composition carried
+        signal that gradient boosting and a GRU could not express, both
+        would return nulls for a reason that has nothing to do with the
+        data. E4 tests for information flow without fitting a forecaster:
+        a pooled panel Granger test on first differences, region fixed
+        effects, lags built strictly inside (region, season) so none
+        reaches across the summer gap. E5 asks the same question without
+        a linearity assumption, as transfer entropy in bits.</p>
+
+        <p>Significance comes from a <b>circular-shift surrogate null</b>,
+        not an analytic p-value: panel residuals here are autocorrelated
+        within a season and correlated across regions in the same week, so
+        a textbook F-test would be anti-conservative and would manufacture
+        significance. Shifting the source inside each (region, season)
+        preserves its own autocorrelation exactly and destroys only its
+        alignment with the target.</p>""")
+        rows = []
+        for r in iflow.itertuples():
+            stat = ("—" if r.statistic != r.statistic
+                    else (f"{r.net:+.4f} bits" if r.net == r.net
+                          else f"F = {r.statistic:.3f}"))
+            rows.append([r.test.replace("E4 ", "").replace("E5 ", ""),
+                         r.source, r.stratum, r.param, stat,
+                         f"{r.p_emp:.3f}", f"{r.bh_q:.3f}", str(int(r.n))])
+        A(raw_table(rows,
+                    ["test", "dating", "stratum", "parameter",
+                     "statistic", "surrogate p", "BH q", "n"],
+                    "Table 8.3 &mdash; All twelve arms. Transfer entropy is "
+                    "reported net of the surrogate mean, because the "
+                    "estimator is upward-biased at finite sample size."))
+        nraw = int((iflow["p_emp"] < 0.05).sum())
+        nbh = int((iflow["bh_q"] < 0.05).sum())
+        A(f"""
+        <p><b>Reading the two small p-values honestly.</b> {nraw} of twelve
+        arms cross p&nbsp;=&nbsp;0.05 uncorrected. Twelve tests at a nominal
+        0.05 are expected to produce 0.6 such crossings by chance alone, and
+        under Benjamini-Hochberg <b>{nbh} arms survive</b> &mdash; both
+        land at q&nbsp;=&nbsp;0.240, far from the Bonferroni threshold of
+        {0.05 / len(iflow):.4f}. Neither is a finding. They are recorded
+        rather than dropped because the arm with the smaller p is the one
+        where a signal would be <i>expected</i> if any existed: oracle
+        dating, pre-peak. A future study with more seasons should look
+        there first, and should expect to find nothing.</p>""")
+
+    if ip_p.exists():
+        pw = pd.read_csv(ip_p)
+        A(raw_table(
+            [[f"{r.alpha:.3f}", f"{r.alpha ** 2 * 100:.2f}%",
+              f"{r.src_granger_F:.3f}", f"{r.src_granger_p:.3f}",
+              "<b>detected</b>" if r.src_granger_p < 0.05 else "—"]
+             for r in pw.itertuples()],
+            ["injected &alpha;", "variance carried", "Granger F",
+             "surrogate p", "verdict"],
+            "Table 8.4 &mdash; The source-side positive control. A synthetic "
+            "predictor of strength &alpha; is built against the REAL "
+            "differenced target and masked to composition's real "
+            "availability, so &alpha; is the same quantity E8 sweeps and the "
+            "two floors sit on one scale."))
+        det = pw[(pw.alpha > 0) & (pw.src_granger_p < 0.05)]
+        fp = pw[pw.alpha == 0]
+        if len(det) and len(fp):
+            a0 = float(det.alpha.min())
+            A(f"""
+            <p><b>The control is what makes the null worth reporting.</b>
+            At &alpha;&nbsp;=&nbsp;0 the test returns
+            p&nbsp;=&nbsp;{float(fp.src_granger_p.iloc[0]):.3f}: no false
+            positive. It begins firing at
+            <b>&alpha;&nbsp;=&nbsp;{a0:.2f}</b>, a predictor carrying
+            <b>{a0 ** 2 * 100:.1f}% of target variance</b>, and its F
+            statistic rises monotonically from there.</p>""")
+    A(figure("fig_information_flow.png",
+             "Figure 8.3 &mdash; Left: raw surrogate p for the eight Granger "
+             "arms; one crosses 0.05 and none survives correction. Right: "
+             "the positive control fires, which is what licenses reading the "
+             "left panel as absence rather than as blindness. The non-"
+             "monotone source-side point at &alpha; = 0.025 is the expected "
+             "behaviour of a well-calibrated null: below the detection floor "
+             "the p-value is uniform, not small."))
+
+    # ---- 8.3 joint reading ------------------------------------------
+    A("<h3>8.3 What the two experiments license together</h3>")
+    A("""
+    <p>The comparison between these two floors has to be made carefully,
+    and one version of it is wrong. E4's <i>target-side</i> control injects
+    coupling into a synthetic AR(1) target and fires at
+    &alpha;&nbsp;=&nbsp;0.05 &mdash; but that measures sensitivity to
+    coupling into <i>that</i> process, not into real wILI, which carries
+    seasonal structure a forecaster already exploits. Quoting it against
+    E8's MDE would compare two different quantities and would overstate the
+    result by roughly four-fold. The <i>source-side</i> control in Table 8.4
+    exists precisely so the comparison is legitimate: both sweep the
+    correlation of a synthetic predictor with the standardised real target,
+    under this panel's real coverage.</p>
+
+    <p>On that single scale:</p>
+    <ul>
+      <li><b>The forecasting design</b> (E8) resolves a predictor only
+          above &alpha; &asymp; 0.58&ndash;0.64, i.e. 33&ndash;41% of wILI
+          variance &mdash; and pre-peak, not at any strength tested.</li>
+      <li><b>The panel Granger test</b> (E4) resolves one at
+          &alpha; = 0.10, i.e. 1.0% of variance: roughly a six-fold finer
+          resolution in &alpha; and thirty-fold in variance.</li>
+      <li><b>Applied to the real data, the sharper instrument also finds
+          nothing</b> that survives multiple-testing correction.</li>
+    </ul>
+
+    <p>That is the joint claim, and it is stronger than either experiment
+    alone. E3a's null could have been a blunt-instrument artefact; E8
+    quantifies exactly how blunt; E4 then rules out the artefact by
+    applying a far sharper instrument to the same panel and returning the
+    same answer. The research question &mdash; does pathogen genomic
+    composition carry forecasting signal for regional influenza incidence
+    beyond case history &mdash; is answered in the negative at subtype
+    resolution, and the answer is now bounded rather than merely
+    asserted.</p>
+
+    <div class='box warn'><b>Scope, stated once and not softened.</b> This
+    bounds H3N2-versus-H1N1 composition, which after QC is effectively a
+    two-category vector. It says nothing about clade-level or antigenic
+    features, which are untestable on this dataset because only sequence
+    metadata was retained. A null at subtype resolution is not a null for
+    genomic surveillance.</div>""")
+
+    A("<h2 class='pb'>9. Consolidated comparison and progression</h2>")
     A(raw_table([
         ["E1", "Where does delay remove genomic coverage?",
          "model-free coverage accounting", "Coverage vanishes before the peak, not after: 97.1% vs 34.8%, 8&ndash;11 dead onset weeks per season",
@@ -952,14 +1210,25 @@ def build():
          "2&times;2 of national/regional &times; oracle/as-of", "Yes; delay costs 43.5&ndash;49.8%, ~85&ndash;95% of it staleness; regional adds nothing",
          "<b>Positive</b>"],
         ["E3c", "What would recover the lost signal?",
-         "counterfactual window &times; submission-speed surface", "Neither lever alone; jointly +33 to +37%",
+         "counterfactual window &times; submission-speed surface",
+         "A tighter window ALONE is harmful (&minus;29 to &minus;40%); the levers are complements. Deployable cell L4-12 with a 14-day speed-up: +9.1 to +10.5% at every horizon",
          "<b>Positive</b>"],
-        ["E6", "Which graph relation carries information?",
-         "stability + feature screen + GNN with G5 control", "None; correlation graphs are statistically random across seasons",
+        ["E4 / E5", "Is there information flow at all, without fitting a model?",
+         "panel Granger + transfer entropy, circular-shift surrogate null, swept positive control",
+         "No; 2 of 12 arms cross p&lt;0.05 raw against 0.6 expected, neither survives BH (q=0.240). Control fires from &alpha;=0.10, i.e. 1.0% of variance",
          "<b>Null</b>"],
+        ["E6", "Which graph relation carries information?",
+         "stability + feature screen + GNN with G5 control, plus two exogenous relations",
+         "None; correlation graphs are statistically random across seasons, and season-invariant climate / population-mass graphs do not rescue it &mdash; stability is necessary but not sufficient",
+         "<b>Null</b>"],
+        ["E8", "What could this design have detected?",
+         "synthetic predictor swept over strength &times; availability, with a calibrated &alpha;=0 arm",
+         "MDE &alpha; &asymp; 0.58&ndash;0.64 (33&ndash;41% of variance); pre-peak at real coverage, no strength tested suffices. Null arm: 0 false positives in 48 cells",
+         "<b>Positive</b> (bound)"],
     ], ["experiment", "question", "design", "finding", "outcome"],
-        "Table 8.1 &mdash; The six experiments. Two produced nulls; both nulls "
-        "are controlled and both are load-bearing for the positive results."))
+        "Table 9.1 &mdash; The eight experiments. Three produced nulls; all "
+        "three are controlled, and E8 converts the central null from an "
+        "absence of evidence into a bounded, falsifiable statement."))
     A("""
     <h3>How the experiments depend on one another</h3>
     <p>The sequence is not six independent studies. Each one is the direct
@@ -994,7 +1263,7 @@ def build():
     why the relation fails rather than merely reporting that it does.</p>
     """)
 
-    A("<h2 class='pb'>9. Novelty and research contributions</h2>")
+    A("<h2 class='pb'>10. Novelty and research contributions</h2>")
     A("""
     <p>Contributions are separated into those demonstrated by the experiments
     above and those the work only gestures at. Claims are stated at the
@@ -1094,7 +1363,7 @@ def build():
     </ul>
     """)
 
-    A("<h2 class='pb'>10. Limitations and threats to validity</h2>")
+    A("<h2 class='pb'>11. Limitations and threats to validity</h2>")
     A("""
     <ul>
       <li><b>Sample size.</b> Six seasons, five folds, 1,980 core region-weeks.
@@ -1115,7 +1384,7 @@ def build():
       <i>is</i> the dataset.</li>
     </ul>
 
-    <h2>11. Reproducibility and artifact index</h2>
+    <h2>12. Reproducibility and artifact index</h2>
     <p>Every number in this document was computed at build time from the CSVs
     below; none was transcribed by hand.</p>
     """)
@@ -1135,17 +1404,26 @@ def build():
         ["E3c", "<code>src/analysis/delay_policy_surface.py</code>",
          "policy_surface.csv, policy_surface_signs.csv",
          "fig_policy_surface, fig_policy_mechanism, fig_policy_frontier"],
+        ["E4 / E5", "<code>src/analysis/information_flow.py</code>",
+         "information_flow.csv, information_flow_power.csv",
+         "fig_information_flow"],
         ["E6", "<code>src/analysis/graph_relation_ablation.py</code>",
          "graph_stability.csv, graph_feature_screen.csv, graph_gnn_ablation.csv",
          "fig_graph_stability, fig_graph_feature_screen, fig_graph_gnn_ablation"],
+        ["E8", "<code>src/analysis/detectability_frontier.py</code>",
+         "detectability_frontier.csv, detectability_frontier_prepeak.csv, detectability_null.csv",
+         "fig_detectability_frontier, fig_detectability_frontier_prepeak"],
     ], ["experiment", "script", "result CSVs", "figures"],
-        "Table 11.1 &mdash; Artifact index. Regression baselines for E1 live in "
+        "Table 12.1 &mdash; Artifact index. Regression baselines for E1 live in "
         "<code>coverage_baseline.json</code>; the script fails loudly on drift."))
     A("""
-    <div class='box warn'><b>One repository action outstanding.</b> The title of
-    <code>fig_ablation_headline.png</code> predates the E3a null and overstates
-    it; it should be corrected before the figure is reused outside this
-    document, where the caption already notes the discrepancy.</div>
+    <p>The full ordered pipeline is driven by
+    <code>src/tools/run_pipeline.py</code>, which declares each stage's inputs
+    and skips a stage whose inputs are absent rather than letting it run on
+    stale files. Every experiment above is reproducible from a fresh clone
+    with <code>--only analysis</code>; the ingestion and raw-preprocessing
+    chain is not, because <code>data/raw/</code> is gitignored. That boundary
+    is stated in the README.</p>
     """)
 
     html = (f"<!doctype html><html><head><meta charset='utf-8'>"

@@ -194,6 +194,32 @@ audit trail with one row per arm × fold × horizon × seed × stratum.
 
 ## 5. E4 — panel Granger causality
 
+> **STATUS 2026-11-15 — IMPLEMENTED** in `src/analysis/information_flow.py`
+> (E4 and E5 share one script; they share the panel preparation, the
+> surrogate null and the positive control, and separating them would have
+> meant maintaining two copies of the lag construction).
+> Outputs: `data/reports/information_flow{,_power}.csv`,
+> `figures/fig_information_flow.png`.
+>
+> **Two deviations from the design below, both strengthening it:**
+>
+> 1. **Panel pooling, not per-series tests.** §6 notes our series are
+>    14–24 points, which is fatal for a per-series test. The implementation
+>    instead pools the 60 (region, season) series into one panel regression
+>    with region fixed effects and lags built strictly inside
+>    (region, season), giving n ≈ 1,678 complete rows for the oracle arm and
+>    1,161 for as-of. This is what makes the test viable at this sample size.
+>
+> 2. **A swept positive control, which the design did not require.** A
+>    synthetic target driven by *lagged* real composition at known coupling
+>    α, carrying composition's real missingness, is run alongside. Without
+>    it a null here is indistinguishable from no power — the same trap E3a
+>    avoided with its positive control, and the reason E8 exists. The first
+>    implementation drove the synthetic target with *contemporaneous* dx and
+>    so never fired at any α; that was caught by the control itself and
+>    fixed. Differenced composition is near-white, so a contemporaneous
+>    drive is undetectable by a lagged test by construction.
+
 **Research question.** Does composition change lead incidence change, model
 free, without a fitted forecaster?
 

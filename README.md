@@ -146,10 +146,10 @@ re-run from `qc_filter.py`.
 consequence is bounded, and worth stating precisely rather than leaving a
 reader to discover it:
 
-**Every published result is reproducible from the clone.** Seven of the
-eight analysis stages — E1, E2, E3a, E3b, E3c, E6 and E8 — depend only on
-tracked files, because the joined master table and all four feature tables
-are committed. The eighth, `build_genomic_features`, is blocked and skips;
+**Every published result is reproducible from the clone.** Eight of the
+nine analysis stages — E1, E2, E3a, E3b, E3c, E4/E5, E6 and E8 — depend only
+on tracked files, because the joined master table and all four feature
+tables are committed. The ninth, `build_genomic_features`, is blocked and skips;
 its output `data/features/genomic_derived.csv` is tracked, so nothing
 downstream of it is affected:
 
