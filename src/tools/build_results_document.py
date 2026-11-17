@@ -1211,7 +1211,7 @@ def build():
          "<b>Positive</b>"],
         ["E3c", "What would recover the lost signal?",
          "counterfactual window &times; submission-speed surface",
-         "A tighter window ALONE is harmful (&minus;29 to &minus;40%); the levers are complements. Deployable cell L4-12 with a 14-day speed-up: +9.1 to +10.5% at every horizon",
+         "A tighter window ALONE is harmful (L0-4: &minus;21.3 to &minus;39.9%); the levers are complements. Deployable cell L4-12 with a 14-day speed-up: +8.9 to +10.5% at every horizon",
          "<b>Positive</b>"],
         ["E4 / E5", "Is there information flow at all, without fitting a model?",
          "panel Granger + transfer entropy, circular-shift surrogate null, swept positive control",

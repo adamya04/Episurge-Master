@@ -349,7 +349,8 @@ four pre-COVID folds; FLIP means the sign is not stable.
 | both, strong | L0-4, +56 d | FLIP | +33.3 | +33.6 | +33.5 | +34.0 | +34.1 |
 | both, maximal | L0-4, +84 d | +34.7 | +35.9 | +36.5 | +36.8 | +37.7 | +38.2 |
 
-**A tighter window alone is actively harmful** — −29 to −45 %. Narrowing the
+**A tighter window alone is actively harmful** — L0-4 costs −21.3 to −39.9 %
+(L0-2: −23.8 to −44.7 %), sign-consistent at h1–h6. Narrowing the
 lag window without speeding up publication empties it: the sequences that
 would fill `L0-4` have not been deposited yet at the origin. This is the
 result that makes the surface worth reporting rather than a monotone
@@ -362,7 +363,7 @@ sign-consistent at every horizon and at every speed-up tested (+2.5 % at
 alone recovers little or hurts, together they recover a third of the gap.
 
 **The deployable recommendation is the modest cell.** `L4-12` with a
-14-day submission speed-up gives **+9.1 to +10.5 %, sign-consistent at every
+14-day submission speed-up gives **+8.9 to +10.5 %, sign-consistent at every
 horizon**, and both halves are operationally plausible — a two-week
 reduction in deposit latency and a window four weeks tighter than current.
 The +34 to +38 % cells require an 8–12 week speed-up, which is a surveillance
