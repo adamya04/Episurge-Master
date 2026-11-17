@@ -1,0 +1,19 @@
+[theme]
+base = "dark"
+primaryColor = "#22D3EE"
+backgroundColor = "#070B13"
+secondaryBackgroundColor = "#0E1522"
+textColor = "#E6EDF7"
+
+[server]
+headless = false
+# serves app/static/basemap.json: an empty, network-free basemap so the
+# 3D maps render identically with or without internet
+enableStaticServing = true
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

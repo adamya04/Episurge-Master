@@ -32,6 +32,44 @@ Results: `RESULTS.md` · Decisions and rationale: `DECISIONS.md` · Roadmap:
 
 ---
 
+## Demo application
+
+An interactive Streamlit platform presenting the whole project — pipeline,
+data, every experiment and its verdict — lives in `app/`. Every number it
+shows is computed at run time from the committed artifacts in `data/`
+(`app/core/results.py`); none is typed in. The forecast page re-trains the
+E2 baselines live and checks its own MAE against `baseline_results.csv`.
+
+Run it **from the repository root** (the theme and the offline basemap are
+configured in `.streamlit/config.toml`, which Streamlit reads from the
+launch directory). Windows Command Prompt:
+
+```
+cd C:\path\to\EpiSurge-Master
+venv\Scripts\activate
+pip install -r requirements.txt -r requirements-app.txt
+streamlit run app\streamlit_app.py
+```
+
+The browser opens at http://localhost:8501. No internet connection is
+needed: state boundaries are vendored (`app/assets/us_states.geojson`,
+us-atlas 3.0.1, ISC licence) and the 3D maps draw on a local, tile-free
+basemap. PyTorch is not required — the GNN results are read from E6's
+artifacts, not re-trained.
+
+| page | what it shows |
+|---|---|
+| Mission brief | the question, the three findings, the timeliness gap, all eight experiments |
+| Architecture & pipeline | the stage graph from `run_pipeline.py`, the sequence funnel, as-of backfill |
+| Epidemic atlas | 3D incidence map, animated season, spatiotemporal tape, spread order, climate |
+| Genomic surveillance | the "time machine", sequencing effort by state, delay by subtype, E1 |
+| Experiment explorer | the evidence matrix (every contrast × horizon), E2, E3a, E3b |
+| Forecast studio | live B0/B1/B2 training on any fold, horizon and region |
+| Graph lab · GNN | the six graph relations, the season-to-season rewiring, message passing, E6 |
+| Policy simulator | the E3c window × deposit-speed surface, in 3D |
+| Detectability frontier | E8 and E4/E5 on one variance ruler |
+| Contributions & impact | contributions, rejected ideas, limitations, future work, artifact index |
+
 ## Setup
 
 Python 3.11+ on Windows (the pipeline is developed and run on Windows
@@ -132,6 +170,9 @@ data/processed/                QC'd, mapped and joined data
 data/features/                 model-ready feature tables
 data/reports/                  result tables and regression baselines
 figures/                       generated figures
+app/                           Streamlit demo platform (see Demo application)
+app/core/                      data loaders, derived results, live models, graphs
+app/views/                     one file per page
 ```
 
 ### Configuration
